@@ -1,0 +1,35 @@
+html{
+  color: #b5b1b1;
+}
+html.dark{
+  background: #222222;
+  color: #FAFAFA60;
+}
+html, body, #root {
+  height: 100%;
+}
+
+.success{
+  color: red;
+}
+.success::before{
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  /* padding: 4px; */
+  background-color: green;
+  border-radius:50%;
+  border: 2px rgba(255,0,0, 0.3) solid;
+  transform-origin: center;
+  animation: 2s run linear infinite;
+}
+
+@keyframes run {
+  from {
+    border-width: 2px;
+  }
+  to {
+    border-width: 3px;
+  }
+}
