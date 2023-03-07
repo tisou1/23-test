@@ -14,9 +14,9 @@ export default function Download() {
   const handleClick = async () => {
     const doc = await handleDownLoad('pdf')
 
-    // getData({
-    //   name: 'siry',
-    // }, 'http://localhost:5000/download', doc)
+    getData({
+      name: 'siry',
+    }, 'http://localhost:5000/download', doc)
 
     // list
     // getList({
@@ -28,7 +28,7 @@ export default function Download() {
     //   name: 'siry',
     // }, 'http://localhost:5000/images', doc)
 
-    saveBase64Images({ content: base64File }, 'pdf')
+    // saveBase64Images({ content: base64File }, 'pdf')
   }
   return (
     <div>
@@ -88,9 +88,21 @@ function getData(params, url, doc) {
   }).then((res) => {
     // , { type: 'application/zip' }
     // 第二个参数指定类型
-    console.log(res)
-    const blob = new Blob([res.data])
-    console.log(blob)
+    console.log(res.data)
+    // const blob = new Blob([res.data])
+
+    const nextBlob = new Blob([res.data])
+    console.log(typeof res.data)
+    const url = window.URL.createObjectURL(nextBlob)
+    const link = document.createElement('a')
+    link.href = url
+    link.setAttribute('download', 'files.zip')
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    // 释放url
+    URL.revokeObjectURL(url)
+
     // const fileReader = new FileReader()
     // fileReader.readAsDataURL(blob)
     // fileReader.onloadend = function (res) {
@@ -98,38 +110,38 @@ function getData(params, url, doc) {
     // }
 
     // 读取压缩包
-    new_zip.loadAsync(blob).then((zip) => {
-      // 添加新的文件
-      zip.file('file.txt', 'content')
-      // 添加pdf
-      if (typeof doc !== 'undefined') {
-        try {
-          zip.file('新建.pdf', doc.output('blob'))
-        }
-        catch {
-          console.error('Something went wrong!')
-        }
-      }
+    // new_zip.loadAsync(blob).then((zip) => {
+    //   // 添加新的文件
+    //   zip.file('file.txt', 'content')
+    //   // 添加pdf
+    //   if (typeof doc !== 'undefined') {
+    //     try {
+    //       zip.file('新建.pdf', doc.output('blob'))
+    //     }
+    //     catch {
+    //       console.error('Something went wrong!')
+    //     }
+    //   }
 
-      // a 这种直接利用file-save进行下载
-      // zip.generateAsync({ type: 'blob' }).then((res) => {
-      //   saveAs(res, '文件.zip')
-      // })
+    // a 这种直接利用file-save进行下载
+    // zip.generateAsync({ type: 'blob' }).then((res) => {
+    //   saveAs(res, '文件.zip')
+    // })
 
-      // b 将接口返回的文件流用zip打开,然后插入新文件,在将这个zip对象转为流,利用下面的a标签进行下载
-      zip.generateAsync({ type: 'blob' }).then((res) => {
-        const nextBlob = new Blob([res])
-        const url = window.URL.createObjectURL(nextBlob as Blob)
-        const link = document.createElement('a')
-        link.href = url
-        link.setAttribute('download', 'static.zip')
-        document.body.appendChild(link)
-        link.click()
-        link.remove()
-        // 释放url
-        URL.revokeObjectURL(url)
-      })
-    })
+    // b 将接口返回的文件流用zip打开,然后插入新文件,在将这个zip对象转为流,利用下面的a标签进行下载
+    //   zip.generateAsync({ type: 'blob' }).then((res) => {
+    //     const nextBlob = new Blob([res])
+    //     const url = window.URL.createObjectURL(nextBlob as Blob)
+    //     const link = document.createElement('a')
+    //     link.href = url
+    //     link.setAttribute('download', 'static.zip')
+    //     document.body.appendChild(link)
+    //     link.click()
+    //     link.remove()
+    //     // 释放url
+    //     URL.revokeObjectURL(url)
+    //   })
+    // })
   }).catch((err) => {
     console.log(err)
   })
