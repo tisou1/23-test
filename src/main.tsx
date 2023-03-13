@@ -19,13 +19,13 @@ const App = () => {
 }
 
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
     <Router>
       <App />
       <ClickToComponent />
     </Router>
     <Footer />
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
+  // </React.StrictMode>,
 )
