@@ -18,7 +18,7 @@ export default defineConfig({
     react(),
     Unocss(),
     Pages({
-      exclude: ['**/components/*.ts{x}', '**/hooks/*.{t,j}s'],
+      exclude: ['**/components/*.ts{,x}', '**/hooks/*.{t,j}s'],
     }),
   ],
   test: {

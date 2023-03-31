@@ -118,6 +118,51 @@ class MyPromise {
 
     return promise2
   }
+
+  // 静态方法
+  // resolve, 相当于新建一个promise对象.并且把状态改为filfilled
+  static resolve(value) {
+    // 如果接受的promise,直接返回
+    if (value instanceof MyPromise)
+      return value
+    return new MyPromise((resolve, reject) => {
+      if (value && value.then && typeof value.then === 'function') {
+        setTimeout(() => {
+          value.then(resolve, reject)
+        })
+      }
+      else {
+        resolve(value)
+      }
+    })
+  }
+
+  // reject
+  static reject(reason) {
+    return new Promise((resolve, reject) => {
+      reject(reason)
+    })
+  }
+
+  static all(promiseArr) {
+    if (!Array.isArray(promiseArr))
+      throw new TypeError('传入非数组')
+    const ans = []
+    return new MyPromise((resolve, reject) => {
+      for (const i in promiseArr) {
+        MyPromise.resolve(promiseArr[i])
+          .then((data) => {
+          // 需要记录每一个promise的返回值
+            ans[i] = data
+            // 长度够了之后,就resolve
+            if (i === promiseArr.length)
+              resolve(ans)
+          }).catch((err) => {
+            reject(err)
+          })
+      }
+    })
+  }
 }
 
 function resolvePromise(promise2, x, resolve, reject) {
@@ -179,7 +224,6 @@ function resolvePromise(promise2, x, resolve, reject) {
     resolve(x)
   }
 }
-
 MyPromise.deferred = function () {
   const result = {}
   result.promise = new MyPromise((resolve, reject) => {
