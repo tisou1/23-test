@@ -1,5 +1,5 @@
-// import { FixedSizeList } from 'react-window'
-import { FixedSizeList } from './components'
+import { FixedSizeList } from 'react-window'
+// import { FixedSizeList } from './components'
 
 export default function List() {
   return (
@@ -12,6 +12,8 @@ export default function List() {
       >
         {Row}
       </FixedSizeList>
+
+      <div className="w-20px h-30px pa-8 mt-8">sd</div>
     </section>
   )
 }
@@ -19,3 +21,4 @@ export default function List() {
 const Row = ({ index, style }) => (
   <div style={style}>Row {index}</div>
 )
+
