@@ -6,7 +6,7 @@ it('test', () => {
   const f3 = () => 3
 
   const fn = compose(f1, f2, f3)
-  expect(fn()).toMatchInlineSnapshot('[Function]')
+  expect(fn()).toMatchInlineSnapshot('1')
 })
 
 function compose(...funcs) {

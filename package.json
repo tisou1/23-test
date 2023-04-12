@@ -7,7 +7,7 @@
     "dev": "vite --port 3333 --open",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest run",
+    "test": "vitest run -u",
     "test:w": "vitest -u",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
