@@ -1,24 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <script>  </script>
+import { describe, expect, it } from 'vitest'
 
-  <button id="btn-n">
-    更改名字
-  </button>
-
-    <button id="btn-a">
-    更改年龄
-  </button>
-
-  <script>
-    function isObject(obj) {
+function isObject(obj) {
   return obj !== null && typeof obj === 'object'
 }
 
@@ -36,8 +18,8 @@ function triggerEffects(dep) {
   for (const effect of dep)
 
     effect()
-  // if (effect.schedule)
-  //   effect.schedule()
+    // if (effect.schedule)
+    //   effect.schedule()
 
   // else
   //   effect.run()
@@ -74,7 +56,7 @@ function trigger(target, type, propsKey) {
   const dep = depsMap.get(propsKey)
   deps.push(dep)
 
-  const effects = []
+  const effects: Array<any> = []
   deps.forEach((dep) => {
     // 这里解构 dep 得到的是 dep 内部存储的 effect
     effects.push(...dep)
@@ -91,8 +73,8 @@ const handler = {
     track(target, 'get', propsKey)
 
     if (isObject(res)) {
-          // 将所有事object的属性也进行包裹,变成响应式
-          return createReactiveObject(res, handler)
+      // 将所有事object的属性也进行包裹,变成响应式
+      return createReactiveObject(res, handler)
     }
 
     return res
@@ -121,38 +103,20 @@ function effect(fn) {
   fn()
 }
 
-const obj = {
-  name: 'siry',
-  age: 18,
-  numbers: [1, 2, 3],
-  ob: {
-    add: 'cccc',
-    bd: 'ui09',
-  },
-}
+it('reative', () => {
+  const obj = {
+    name: 'siry',
+    age: 18,
+    numbers: [1, 2, 3],
+    ob: {
+      add: 'cccc',
+      bd: 'ui09',
+    },
+  }
 
-const newProxy = createReactiveObject(obj, handler)
-    effect(() => {
-      console.log('effect', newProxy.name)
-    })
+  const newProxy = createReactiveObject(obj, handler)
 
-    effect(() => {
-      console.log('effect', newProxy.age)
-    })
-
-    // setTimeout(() => {
-    //   newProxy.name = 'ti'
-    // }, 2000)
-const btn = document.querySelector('#btn-n')
-const btn_a = document.querySelector('#btn-a')
-
-btn.addEventListener('click', () => {
-  newProxy.name = 'cc'
+  effect(() => {
+    console.log('effect', newProxy.name)
+  })
 })
-
-btn_a.addEventListener('click', () => {
-  newProxy.age = 20
-})
-  </script>
-</body>
-</html>
