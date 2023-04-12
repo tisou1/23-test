@@ -43,6 +43,7 @@ function triggerEffects(dep) {
   //   effect.run()
 }
 
+// 关键函数 -- 收集依赖
 function track(target, type, propsKey) {
   console.log(`触发 track -> target: ${target} type:${type} key:${propsKey}`)
 
@@ -63,6 +64,7 @@ function track(target, type, propsKey) {
   trackEffects(dep)
 }
 
+// 关键函数 -- 触发回调
 function trigger(target, type, propsKey) {
   console.log('trigger', target, type, propsKey)
 
