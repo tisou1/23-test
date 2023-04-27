@@ -1,4 +1,5 @@
 import React, { createContext, useContext } from 'react'
+import Pagitation from '~/components/pagitation'
 
 const TContext = createContext({
   name: 'siry',
@@ -6,15 +7,20 @@ const TContext = createContext({
 })
 
 export default function Test() {
+  const onChange = (curPage, prePage, step) => {
+    console.log(`当前页:${curPage}, 先钱页: ${prePage}, step:${step}`)
+  }
   return (
-    <TContext.Provider value={{ name: 'siry-2', age: 18 }}>
-      <Layout>
-        <Post text="post"/>
-        <Son1 />
-        <Son2 />
-        <Son3 />
-      </Layout>
-    </TContext.Provider>
+  // <TContext.Provider value={{ name: 'siry-2', age: 18 }}>
+  //   <Layout>
+  //     <Post text="post"/>
+  //     <Son1 />
+  //     <Son2 />
+  //     <Son3 />
+  //   </Layout>
+  // </TContext.Provider>
+
+    <Pagitation totalCount={200} currentPage={1} onChange={onChange} />
   )
 }
 
