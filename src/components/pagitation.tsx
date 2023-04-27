@@ -19,6 +19,7 @@ const Pagitation: React.FC<PagitationProps> = (props) => {
   } = props
 
   const [currentPage, setCurrentPage] = useState(_currentPage)
+  // todo 选择没页数据多少条.
   const [itemsPerPage, setItemsPerPage] = useState(_itemsPerPage)
 
   // const lastPage = useMemo(() => {
@@ -56,7 +57,6 @@ const Pagitation: React.FC<PagitationProps> = (props) => {
 
     return pages
   }, [currentPage, itemsPerPage])
-  console.log(_paginate)
 
   const changePage = (selectPage: number | string) => {
     if (typeof selectPage === 'string')

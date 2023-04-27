@@ -10,6 +10,13 @@ export default function Test() {
   const onChange = (curPage, prePage, step) => {
     console.log(`当前页:${curPage}, 先钱页: ${prePage}, step:${step}`)
   }
+  // let a = 'c'
+  {
+    var a = 'd'
+    console.log(a)
+  }
+
+  console.log(a)
   return (
   // <TContext.Provider value={{ name: 'siry-2', age: 18 }}>
   //   <Layout>
