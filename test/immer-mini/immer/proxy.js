@@ -10,8 +10,8 @@ const objectTraps = {
     const source = latest(state)
     // 判断源对象上是否存在这个key
     if (!has(source, prop))
-      //  source.__proto__[prop]
-      return Object.getPrototypeOf(source, prop)
+      // return source.__proto__[prop]
+      return Object.getPrototypeOf(source)[prop]
 
     // 获取真实的数据
     const value = source[prop]
