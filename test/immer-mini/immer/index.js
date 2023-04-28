@@ -5,7 +5,6 @@ import { finalize } from './finalize'
 export function produce(base, recipe) {
   if (isDraftable(base)) {
     const proxy = createProxy(base)
-    console.log(proxy)
     recipe(proxy)
     return finalize(proxy)
   }
