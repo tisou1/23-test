@@ -22,7 +22,7 @@ function produce(baseState, recipe) {
 
       target[key] = value
 
-      recipe(nextState)
+      // recipe(nextState)
 
       return true
     },
@@ -48,9 +48,9 @@ const state = {
 }
 
 const nextState = produce(state, (draft) => {
-  draft.count++
+  draft.count = 2
   draft.person.age--
 })
 
 console.log(state) // { count: 0, person: { name: 'Alice', age: 30 } }
-console.log(nextState) // { count: 1, person: { name: 'Alice', age: 29 } }
+console.log(nextState.person === state.person) // { count: 1, person: { name: 'Alice', age: 29 } }
