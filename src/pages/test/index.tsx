@@ -18,16 +18,23 @@ export default function Test() {
 
   console.log(a)
   return (
-  // <TContext.Provider value={{ name: 'siry-2', age: 18 }}>
-  //   <Layout>
-  //     <Post text="post"/>
-  //     <Son1 />
-  //     <Son2 />
-  //     <Son3 />
-  //   </Layout>
-  // </TContext.Provider>
+<div onMouseDown={() => { console.log('mouseDown') }}>
+<TContext.Provider value={{ name: 'siry-2', age: 18 }}>
+    <Layout>
+      <Post text="post"/>
+      <Son1 />
+      <Son2 />
+      <Son3 />
+    </Layout>
+  </TContext.Provider>
 
     <Pagitation totalCount={200} currentPage={1} onChange={onChange} />
+
+    <div className="w-200px flex justify-between">
+      <input placeholder='请输入sad哈开始的吧手打啊实打实大撒大声地'/>
+      <button>sd</button>
+    </div>
+</div>
   )
 }
 
