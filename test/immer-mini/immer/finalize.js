@@ -2,6 +2,7 @@ import { DRAFT_STATE, ProxyType } from './constants'
 
 export function finalize(proxy) {
   const proxyState = proxy[DRAFT_STATE]
+  console.log(proxyState, '>>>++++')
 
   if (proxyState) {
     // 被代理

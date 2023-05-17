@@ -14,6 +14,7 @@ specifiers:
   ahooks: ^3.7.5
   antd: ^4.24.8
   axios: ^1.2.2
+  classnames: ^2.3.2
   click-to-react-component: ^1.0.8
   eslint: ^8.27.0
   eslint-plugin-react: ^7.31.10
@@ -44,6 +45,7 @@ dependencies:
   ahooks: 3.7.5_react@18.2.0
   antd: 4.24.8_biqbaboplfbrettd7655fr4n2y
   axios: 1.2.2
+  classnames: 2.3.2
   click-to-react-component: 1.0.8_2zx2umvpluuhvlq44va5bta2da
   express: 4.18.2
   file-saver: 2.0.5
