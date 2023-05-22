@@ -1,8 +1,9 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext, useEffect } from 'react'
 import Pagitation from '~/components/pagitation'
 import svg from '~/svg'
 import Svg2 from '~/algorithm.svg'
 import './index.scss'
+import { get, set } from '../../utils'
 
 const TContext = createContext({
   name: 'siry',
@@ -13,14 +14,18 @@ export default function Test() {
   const onChange = (curPage, prePage, step) => {
     console.log(`当前页:${curPage}, 先钱页: ${prePage}, step:${step}`)
   }
-  // let a = 'c'
-  {
-    var a = 'd'
-    console.log(a)
-  }
 
-  console.log(a)
-  let aaa
+  const handleClick1 = () => {
+    set('siry', { name: 'siry', age: 18 }).then((res) => {
+      console.log(res)
+    })
+  }
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    get('siry').then((res) => {
+      console.log(res,
+      )
+    })
+  }
   return (
 <div onMouseDown={() => { console.log('mouseDown') }}>
   {/* <TContext.Provider value={{ name: 'siry-2', age: 18 }}>
@@ -33,7 +38,9 @@ export default function Test() {
     </TContext.Provider> */}
 
     {/* <Test2 /> */}
-    {aaa}
+    <button onClick={handleClick1}>存储</button>
+
+    <button onClick={handleClick}>获取</button>
 
     {/* <Pagitation totalCount={200} currentPage={1} onChange={onChange} /> */}
 </div>
