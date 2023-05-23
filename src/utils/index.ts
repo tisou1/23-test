@@ -48,3 +48,10 @@ export function set<T = any>(key: IDBValidKey, value: any, customStore = default
     return promisifyRequest(store.transaction)
   })
 }
+
+export function del<T = any>(key: IDBValidKey, customStore = defaultGetStore()): Promise<T> {
+  return customStore('readwrite', (store) => {
+    store.delete(key)
+    return promisifyRequest(store.transaction)
+  })
+}
