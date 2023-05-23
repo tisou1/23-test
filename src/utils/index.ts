@@ -1,4 +1,4 @@
-import store from '~/store'
+import { indexedDB } from 'fake-indexeddb'
 
 export type UserStore = <T>(
   txMode: IDBTransactionMode,
@@ -17,7 +17,8 @@ export function promisifyRequest<T = undefined>(request: IDBRequest<T> | IDBTran
 }
 
 export function createStore(dbName: string, storeName: string): UserStore {
-  const request = window.indexedDB.open(dbName)
+  // globalThis
+  const request = indexedDB.open(dbName)
   // onupgradeneeded:  当数据库的版本号发生变化时或首次创建数据库时，该事件会触发
   // createObjectStore: 创建对象存储空间
   request.onupgradeneeded = () => request.result.createObjectStore(storeName)
