@@ -9,6 +9,8 @@ export type UserStore = <T>(
 export function promisifyRequest<T = undefined>(request: IDBRequest<T> | IDBTransaction): Promise<T> {
   return new Promise<T>((resolve, reject) => {
     // oncomplete  onabort 属于IDBTransactio上的事件
+    // oncomplete onabort存储对象上的事务操作事件
+    // onsuccess onerror数据库打开时的事件
     //  @ts-expect-error - file size hacks
     request.oncomplete = request.onsuccess = () => resolve(request.result)
     //  @ts-expect-error - file size hacks
@@ -45,7 +47,9 @@ export function get<T = any>(key: IDBValidKey, customStore = defaultGetStore()):
 
 export function set<T = any>(key: IDBValidKey, value: any, customStore = defaultGetStore()): Promise<T> {
   return customStore('readwrite', (store) => {
+    // put方法, 如果有记录则更新记录, 如果没有则为新加
     store.put(value, key)
+    // store.transaction: 获取对象存储空间的事务：
     return promisifyRequest(store.transaction)
   })
 }
@@ -56,3 +60,34 @@ export function del<T = any>(key: IDBValidKey, customStore = defaultGetStore()):
     return promisifyRequest(store.transaction)
   })
 }
+
+export function delMany<T = any>(keys: IDBValidKey[], customStore = defaultGetStore()): Promise<T> {
+  return customStore('readwrite', (store) => {
+    keys.forEach((key) => {
+      store.delete(key)
+    })
+    return promisifyRequest(store.transaction)
+  })
+}
+
+export function keys(customStore = defaultGetStore()): Promise<IDBValidKey[]> {
+  return customStore('readonly', (store) => {
+    return promisifyRequest(store.getAllKeys())
+  })
+}
+
+export function values<T = any>(customStore = defaultGetStore()): Promise<T[]> {
+  return customStore('readonly', (store) => {
+    return promisifyRequest(store.getAll())
+  })
+}
+
+export function entries<T extends IDBValidKey, V = any>(customStore = defaultGetStore()): Promise<[T, V][]> {
+  return customStore('readonly', (store) => {
+    return Promise.all([
+      promisifyRequest(store.getAllKeys() as unknown as IDBRequest<T[]>),
+      promisifyRequest(store.getAll() as IDBRequest<V[]>),
+    ]).then(([keys, values]) => keys.map((key, i) => [key, values[i]]))
+  })
+}
+

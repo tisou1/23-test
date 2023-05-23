@@ -3,7 +3,7 @@ import Pagitation from '~/components/pagitation'
 import svg from '~/svg'
 import Svg2 from '~/algorithm.svg'
 import './index.scss'
-import { get, set } from '../../utils'
+import { get, keys, set } from '../../utils'
 
 const TContext = createContext({
   name: 'siry',
@@ -26,6 +26,10 @@ export default function Test() {
       )
     })
   }
+
+  const handleClick3 = () => {
+    keys().then((res) => { console.log(res) })
+  }
   return (
 <div onMouseDown={() => { console.log('mouseDown') }}>
   {/* <TContext.Provider value={{ name: 'siry-2', age: 18 }}>
@@ -41,6 +45,7 @@ export default function Test() {
     <button onClick={handleClick1}>存储</button>
 
     <button onClick={handleClick}>获取</button>
+    <button onClick={handleClick3}>获取keys</button>
 
     {/* <Pagitation totalCount={200} currentPage={1} onChange={onChange} /> */}
 </div>
