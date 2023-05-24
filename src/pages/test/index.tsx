@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useEffect } from 'react'
-import Pagitation from '~/components/pagitation'
+import React, { createContext, useContext } from 'react'
 import svg from '~/svg'
 import Svg2 from '~/algorithm.svg'
 import './index.scss'
@@ -11,6 +10,23 @@ const TContext = createContext({
 })
 
 export default function Test() {
+  const tags = new Proxy((name, ...args) => {
+    console.log(name, ...args)
+  }, {
+    get: (tag, name) => {
+      console.log(tag, 'tag')
+      return tag.bind(undefined, name)
+    },
+  })
+
+  const { div, asd } = tags
+  // 这里无论导出什么东西, 都是函数内容体
+
+  console.log(tags)
+  // console.log(tags(2, 3))
+  console.log(div('siry'))
+  console.log(asd('tikl'))
+
   const onChange = (curPage, prePage, step) => {
     console.log(`当前页:${curPage}, 先钱页: ${prePage}, step:${step}`)
   }
