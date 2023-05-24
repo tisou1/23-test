@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import ms from '../index'
+import ms from '../src'
 
 // 四舍五入
 describe('msFn', async () => {
