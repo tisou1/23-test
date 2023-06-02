@@ -1,0 +1,97 @@
+.response-main {
+  display: flex;
+  .workbench-root {
+      position: relative;
+      flex-grow: 1;
+      max-width: 100%;
+      overflow-x: auto;
+      .workbench-card {
+          display: flex;
+          // height: calc(100vh - 140px);
+          .card-item {
+              // min-width: 594px;
+          }
+          .mosaic-split.row {
+              flex: 0 0 auto;
+              cursor: col-resize;
+              margin-left: -4px;
+              width: 4px;
+              position: relative;
+              z-index: 99;
+              border-right: 1px solid #ebebeb;
+              &:hover,
+              &:active {
+                  background-color: none;
+                  .mosaic-split-line {
+                      opacity: 1;
+                      transition-delay: 60ms;
+                  }
+              }
+              .mosaic-split-line {
+                  position: absolute;
+                  width: 1px;
+                  top: 0;
+                  right: 0px;
+                  left: 4px;
+                  bottom: 0;
+                  background-color: #2468f2;
+                  opacity: 0;
+                  transition: opacity 0.1s ease-out;
+              }
+              &.hide-right-card {
+                  display: none;
+              }
+          }
+      }
+      .workbench-card-left {
+          max-height: 100%;
+          overflow: auto;
+          flex: 0 0 auto;
+          .high-setting {
+              padding: 24px 0 32px;
+              .high-setting-trigger {
+                  display: flex;
+                  align-items: center;
+                  color: #1389fd;
+                  cursor: pointer;
+                  padding-bottom: 12px;
+                  .high-setting-text {
+                      display: inline-block;
+                      margin-left: 12px;
+                  }
+                  .anticon.anticon-up {
+                      line-height: 20px;
+                      height: 20px;
+                  }
+              }
+          }
+          .aibp-form.job-creation-hight-form {
+              padding-top: 24px;
+          }
+          .aibp-bml-job-creation-tip {
+              position: absolute;
+              top: 0;
+              left: 400px;
+              height: 30px;
+              padding-left: 10px;
+              line-height: 30px;
+              &.wall-time-tip {
+                  left: 240px;
+              }
+              &.aibp-bml-training-type-tip {
+                  left: 120px;
+              }
+          }
+
+          .submit-run {
+              padding: 24px 0;
+              border-top: 1px solid #ebebeb;
+          }
+      }
+      .workbench-card-right {
+          max-width: 1234px;
+          flex: 1 1 auto;
+          // padding:0 16px;
+      }
+  }
+}
