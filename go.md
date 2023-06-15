@@ -116,3 +116,32 @@ append(a, 10 ,11 ,12)
 https://tour.go-zh.org/methods/1
 
 
+
+
+**dependencies**
+
+```go
+
+
+// const leadings = ['>=', '<=', '>', '<', '~', '^']
+// 还有只用*, 不用具体版本号的
+func getPrefixAndVersion(versionString string) (string, string, error) {
+ // 这里正则前缀可以把语义化版本的都加上, 这里是只有部分的
+ versionRegex := regexp.MustCompile(`^([~^]?)(\d+\.\d+\.\d+)`)
+ // 使用内置方法来 获取匹配的子字符串数组
+ matches := versionRegex.FindStringSubmatch(versionString)
+
+ if len(matches) > 1 {
+  prefix := matches[1]
+  fixedVersion := matches[2]
+  fmt.Printf("版本前缀：%s\n", prefix)
+  fmt.Printf("固定版本：%s\n", fixedVersion)
+  return prefix, fixedVersion, nil
+ } else {
+  err := fmt.Errorf("无法解析版本号：%s", versionString)
+  log.Fatalf("无法解析版本号：%s", versionString)
+  return "", "", err
+ }
+}
+
+```
