@@ -117,12 +117,159 @@ https://tour.go-zh.org/methods/1
 
 
 
+### 方法与指针重定向
+
+```go
+    package main
+
+import "fmt"
+
+type Vertex struct {
+	X, Y float64
+}
+
+func (v *Vertex) Scale(f float64) {
+	v.X = v.X * f
+	v.Y = v.Y * f
+}
+
+func ScaleFunc(v *Vertex, f float64) {
+	v.X = v.X * f
+	v.Y = v.Y * f
+}
+
+func main() {
+	v := Vertex{3, 4}
+	v.Scale(2)
+	ScaleFunc(&v, 10)
+
+	p := &Vertex{4, 3}
+	p.Scale(3)
+	ScaleFunc(p, 8)
+
+	fmt.Println(v, p)
+}
+
+
+var v Vertex
+ScaleFunc(v, 5)  // 编译错误！
+ScaleFunc(&v, 5) // OK
+
+
+var v Vertex
+v.Scale(5)  // OK
+p := &v
+p.Scale(10) // OK
+
+v.Scale(5) 解释为 (&v).Scale(5)。
+```
+
+上面函数和方法在调用时, 对于函数必须传入一个指针, 而对于方法, 可以传指针亦可以传值
+即
+
+同样带原则, 在方法接受者为值时, 以指针调用也是ok的, 但是函数却不行.
+p.Scale(5) 解释为 (*p).Scale(5)。
+
+
+选择指针作为接受者的原因
+
+- 方法能够修改其接收者指向的值。
+
+- 这样可以避免在每次调用方法时复制该值。若值的类型为大型结构体时，这样做会更加高效。
+
+
+### 接口
+
+**接口类型**是由一组方法签名定义的集合
+接口类型的变量可以保存任何实现了这些方法的值
+
+```go
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+type Abser interface {
+	Abs() float64
+}
+
+func main() {
+	var a Abser
+	f := MyFloat(-math.Sqrt2)
+	v := Vertex{3, 4}
+
+	a = f  // a MyFloat 实现了 Abser
+	a = &v // a *Vertex 实现了 Abser
+
+    因为是*Vertex 实现了 Abser,而Vertex 没有实现,所以下面一行的赋值会报错.
+	// 下面一行，v 是一个 Vertex（而不是 *Vertex）
+	// 所以没有实现 Abser。
+	a = v
+
+	fmt.Println(a.Abs())
+}
+
+type MyFloat float64
+
+func (f MyFloat) Abs() float64 {
+	if f < 0 {
+		return float64(-f)
+	}
+	return float64(f)
+}
+
+type Vertex struct {
+	X, Y float64
+}
+
+func (v *Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+
+```
+
+**接口与隐式实现**
+
+
+```go
+package main
+
+import "fmt"
+
+type I interface {
+	M()
+}
+
+type T struct {
+	S string
+}
+
+// 此方法表示类型 T 实现了接口 I，但我们无需显式声明此事。
+func (t T) M() {
+	fmt.Println(t.S)
+}
+
+func main() {
+	var i I = T{"hello"}
+	i.M()
+}
+```
+
+
+#### go中函数, 方法, 接口
+
+方法  静态的
+接口  动态的
+
+
+类型通过实现一个接口的所有方法来实现该接口。既然无需专门显式声明，也就没有“implements”关键字。
 
 **dependencies**
 
 ```go
-
-
 // const leadings = ['>=', '<=', '>', '<', '~', '^']
 // 还有只用*, 不用具体版本号的
 func getPrefixAndVersion(versionString string) (string, string, error) {
