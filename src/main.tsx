@@ -8,9 +8,10 @@ import './index.css'
 import 'uno.css'
 import Footer from './components/footer'
 import store from './store'
+import '@code-hike/mdx/dist/index.css'
 
 const root = ReactDOM.createRoot(document.querySelector('#root')!)
-const App = () => {
+function App() {
   return (
     <Suspense>
       {useRoutes(routes)}

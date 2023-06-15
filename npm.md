@@ -35,6 +35,32 @@ npm login --registry="https://registry.npmjs.org/"
 
   参数可以加--registry, 来指定要发布的源.
 
+  **package.json**的一些字段配置
+
+  - main 当包被安装时,如果是以commonjs的形式引入的话,就会走main指向的文件入口,如果main不存在,默认寻找当前包根目录下面index.js作为入口
+  - module 当包被安装时,如果是以ESM的形式引入的话,就会走module指向的文件入口, 如果module不存在就会找main
+  - files 字段用于指定要包含在发布的软件包中的文件和目录。它定义了哪些文件和目录应该被打包并包含在最终的发布版本中。默认是项目中所有文件和目录. 是一个字符串数组, 支持glob模式匹配, 例如 ['dist', 'es', 'cjs/**/*.css', '!src/test.js']
+  - types 指定类型声明文件
+  - exports (es6) 配置导出模式, 优先级高于`main`
+  
+  ```
+  // 条件加载 & 子目录导出
+  {
+    "name": "pkg"
+    "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/redux.d.ts",
+      "import": "./dist/redux.mjs",
+      "default": "./dist/cjs/redux.cjs"
+      }
+    // 子目录引入, 使用时, import features from 'pkg/features'
+    "./features/": "./src/features/"
+    },
+  }
+  ```
+
+
 ## 4. 删除包的某个版本
 
 `npm unpublish [<package-spec>]`
