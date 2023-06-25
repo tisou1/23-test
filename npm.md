@@ -42,6 +42,9 @@ npm login --registry="https://registry.npmjs.org/"
   - files 字段用于指定要包含在发布的软件包中的文件和目录。它定义了哪些文件和目录应该被打包并包含在最终的发布版本中。默认是项目中所有文件和目录. 是一个字符串数组, 支持glob模式匹配, 例如 ['dist', 'es', 'cjs/**/*.css', '!src/test.js']
   - types 指定类型声明文件
   - exports (es6) 配置导出模式, 优先级高于`main`
+
+
+  优先级,一般来说是模块入口优先级为: `exports` > `module` > `mian`
   
   ```
   // 条件加载 & 子目录导出
