@@ -2,7 +2,6 @@
  * react实现自动pv/click(页面浏览量和点击数)的埋点hooks
  */
 
-import type React from 'react'
 import { createContext, useCallback, useContext, useEffect, useRef } from 'react'
 
 export const logContext = createContext({})
