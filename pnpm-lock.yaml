@@ -137,8 +137,8 @@ devDependencies:
     specifier: ^4.4.9
     version: 4.4.9(@types/node@20.5.9)(sass@1.66.1)
   vite-plugin-pages:
-    specifier: ^0.31.0
-    version: 0.31.0(vite@4.4.9)
+    specifier: ^0.30.1
+    version: 0.30.1(vite@4.4.9)
   vitest:
     specifier: ^0.34.3
     version: 0.34.3(happy-dom@10.11.2)(jsdom@22.1.0)(sass@1.66.1)
@@ -1060,7 +1060,7 @@ packages:
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dependencies:
       cross-spawn: 7.0.3
-      fast-glob: 3.2.12
+      fast-glob: 3.3.1
       is-glob: 4.0.3
       open: 9.1.0
       picocolors: 1.0.0
@@ -1244,17 +1244,10 @@ packages:
     resolution: {integrity: sha512-mEo1sAde+UCE6b2hxn332f1g1E8WfYRu6p5SvTKr2ZKC1f7gFJXk4h5PyGP9Dt6gCaG8y8XhwnXWC6Iy2cmBng==}
     dev: true
 
-  /@types/debug@4.1.7:
-    resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
-    dependencies:
-      '@types/ms': 0.7.31
-    dev: false
-
   /@types/debug@4.1.8:
     resolution: {integrity: sha512-/vPO1EPOs306Cvhwv7KfVfYvOJqA/S/AXjaHQiJboCZzcNDb+TIJFN9/2C9DZ//ijSKWioNyUxD792QmDJ+HKQ==}
     dependencies:
       '@types/ms': 0.7.31
-    dev: true
 
   /@types/estree-jsx@1.0.0:
     resolution: {integrity: sha512-3qvGd0z8F2ENTGr/GG1yViqfiKmRfrXVx5sJyHGFu3z7m5g5utCQtGp/g29JnjflhtQJBv1WDQukHiT58xPcYQ==}
@@ -2692,7 +2685,7 @@ packages:
       side-channel: 1.0.4
       which-boxed-primitive: 1.0.2
       which-collection: 1.0.1
-      which-typed-array: 1.1.9
+      which-typed-array: 1.1.11
     dev: true
 
   /deep-is@0.1.4:
@@ -4123,7 +4116,7 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       dir-glob: 3.0.1
-      fast-glob: 3.2.12
+      fast-glob: 3.3.1
       ignore: 5.2.0
       merge2: 1.4.1
       slash: 4.0.0
@@ -5414,7 +5407,7 @@ packages:
   /micromark@3.2.0:
     resolution: {integrity: sha512-uD66tJj54JLYq0De10AhWycZWGQNUvDI55xPgk2sQM5kn1JYlhbCMTtEeT27+vAhW2FBQxLlOmS3pmA7/2z4aA==}
     dependencies:
-      '@types/debug': 4.1.7
+      '@types/debug': 4.1.8
       debug: 4.3.4
       decode-named-character-reference: 1.0.2
       micromark-core-commonmark: 1.1.0
@@ -7932,8 +7925,8 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-pages@0.31.0(vite@4.4.9):
-    resolution: {integrity: sha512-fw3onBfVTXQI7rOzAbSZhmfwvk50+3qNnGZpERjmD93c8nEjrGLyd53eFXYMxcJV4KA1vzi4qIHt2+6tS4dEMw==}
+  /vite-plugin-pages@0.30.1(vite@4.4.9):
+    resolution: {integrity: sha512-PHneaWBKA4MaUn0/KTBG+dGT+5V5VhTnOnMCE+HJmixxEkFj7PrgSVGFJjWvgHUflrRE7p2O67iC5cIWLzPDyQ==}
     peerDependencies:
       '@vue/compiler-sfc': ^2.7.0 || ^3.0.0
       vite: ^2.0.0 || ^3.0.0-0 || ^4.0.0
@@ -7945,7 +7938,7 @@ packages:
       debug: 4.3.4
       deep-equal: 2.2.1
       extract-comments: 1.1.0
-      fast-glob: 3.2.12
+      fast-glob: 3.3.1
       json5: 2.2.3
       local-pkg: 0.4.3
       picocolors: 1.0.0
