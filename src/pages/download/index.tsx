@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import React from 'react'
 import axios from 'axios'
 import JSZip from 'jszip'
@@ -80,6 +80,27 @@ function getList(params, url, doc) {
 }
 // 接口返回文件流
 function getData(params, url, doc) {
+  // fetch 下载
+  fetch(url, {
+    method: 'post',
+    body: JSON.stringify({
+      name: 'siry',
+    }),
+  }).then(res => res.blob()).then((blob) => {
+    const nextBlob = new Blob([blob])
+    const url = window.URL.createObjectURL(nextBlob)
+    const link = document.createElement('a')
+    link.href = url
+    link.style.display = 'none'
+    link.setAttribute('download', 'files.zip')
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    // 释放url
+    URL.revokeObjectURL(url)
+  })
+  return
+  // axios下载
   axios({
     method: 'post',
     url,
@@ -91,17 +112,17 @@ function getData(params, url, doc) {
     console.log(res.data)
     // const blob = new Blob([res.data])
 
-    const nextBlob = new Blob([res.data])
-    console.log(typeof res.data)
-    const url = window.URL.createObjectURL(nextBlob)
-    const link = document.createElement('a')
-    link.href = url
-    link.setAttribute('download', 'files.zip')
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    // 释放url
-    URL.revokeObjectURL(url)
+    // const nextBlob = new Blob([res.data])
+    // console.log(typeof res.data)
+    // const url = window.URL.createObjectURL(nextBlob)
+    // const link = document.createElement('a')
+    // link.href = url
+    // link.setAttribute('download', 'files.zip')
+    // document.body.appendChild(link)
+    // link.click()
+    // link.remove()
+    // // 释放url
+    // URL.revokeObjectURL(url)
 
     // const fileReader = new FileReader()
     // fileReader.readAsDataURL(blob)
@@ -145,6 +166,22 @@ function getData(params, url, doc) {
   }).catch((err) => {
     console.log(err)
   })
+}
+
+function downloadByBlob(res: string, fileName = '未命名.zip') {
+  if (!res)
+    return
+
+  const url = window.URL.createObjectURL(new Blob([res]))
+  const a = document.createElement('a')
+  a.style.display = 'none'
+  a.href = url
+  a.setAttribute('download', fileName)
+  document.body.appendChild(a)
+  a.click()
+
+  document.body.removeChild(a)
+  window.URL.revokeObjectURL(url)
 }
 
 // 返回base64编码的zip包
@@ -346,4 +383,3 @@ async function saveBase64Images(base64Data, pdfDom = '') {
   // 释放url
   URL.revokeObjectURL(url)
 }
-

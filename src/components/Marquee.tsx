@@ -1,7 +1,6 @@
-
 import './Marquee.scss'
 
-type User = {
+interface User {
   name: string
   image: string
 }
@@ -15,27 +14,25 @@ interface MarqueeProps {
 export default function Marquee(props: MarqueeProps) {
   const {
     users,
-    reverse
+    reverse,
   } = props
-  const colorScheme = props.dark ? 'light' : 'dark';
+  const colorScheme = props.dark ? 'light' : 'dark'
 
   return (
     <div>
        <div className="marquee-wrapper overflow-hidden flex">
             {Array(3)
-                .fill(users)
-                .map((users, index) => (
+              .fill(users)
+              .map((users, index) => (
                     <div key={index} className={`marquee${reverse ? ' marquee-reverse' : ''}`}>
-                        {users.map((user) => (
+                        {users.map(user => (
                             <div className="w-full" key={user.name}>
                                 <img src={user.image} alt={`${user.name}-${colorScheme}`} />
                             </div>
                         ))}
                     </div>
-                ))}
+              ))}
         </div>
     </div>
   )
 }
-
-
