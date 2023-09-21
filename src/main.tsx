@@ -10,6 +10,12 @@ import Footer from './components/footer'
 import store from './store'
 import '@code-hike/mdx/dist/index.css'
 
+// theme
+import 'primereact/resources/themes/lara-light-indigo/theme.css'
+
+// core
+import 'primereact/resources/primereact.min.css'
+
 const root = ReactDOM.createRoot(document.querySelector('#root')!)
 function App() {
   return (
