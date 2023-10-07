@@ -9,7 +9,7 @@ const TContext = createContext({
   age: 18,
 })
 
-export default function Test() {
+export default function Test(props) {
   const tags = new Proxy((name, ...args) => {
     console.log(name, ...args)
   }, {
@@ -58,7 +58,7 @@ export default function Test() {
     </TContext.Provider> */}
 
     {/* <Test2 /> */}
-    <button onClick={handleClick1}>存储</button>
+    <button onClick={handleClick1} >存储</button>
 
     <button onClick={handleClick}>获取</button>
     <button onClick={handleClick3}>获取keys</button>
