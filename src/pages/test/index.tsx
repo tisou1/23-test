@@ -3,6 +3,7 @@ import svg from '~/svg'
 import Svg2 from '~/algorithm.svg'
 import './index.scss'
 import { get, keys, set } from '../../utils'
+import Input from '~/components/Input'
 
 const TContext = createContext({
   name: 'siry',
@@ -62,6 +63,10 @@ export default function Test(props) {
 
     <button onClick={handleClick}>获取</button>
     <button onClick={handleClick3}>获取keys</button>
+
+   <div className='mt-6'>
+   <Input />
+   </div>
 
     {/* <Pagitation totalCount={200} currentPage={1} onChange={onChange} /> */}
 </div>

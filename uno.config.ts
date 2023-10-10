@@ -5,6 +5,9 @@ import {
   presetUno,
 } from 'unocss'
 
+// @unocss/transformer-variant-group转换组
+import transformerVariantGroup from '@unocss/transformer-variant-group'
+
 export default defineConfig({
 
   shortcuts: [
@@ -19,8 +22,11 @@ export default defineConfig({
       scale: 1.2,
       warn: true,
       extraProperties: {
-        display: 'inline-block'
-      }
+        display: 'inline-block',
+      },
     }),
+  ],
+  transformers: [
+    transformerVariantGroup(),
   ],
 })
