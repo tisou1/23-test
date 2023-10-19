@@ -1,4 +1,4 @@
-export { default as useDark } from './useDark'
+export { default as useDark, toggleDarkTransition } from './useDark'
 
 // 调试
 export { default as useTrackEffect } from './useTrackEffect'
