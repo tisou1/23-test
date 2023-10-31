@@ -68,6 +68,10 @@ export default function Test(props) {
    <Input />
    </div>
 
+   <div className='test-over'>
+    text
+   </div>
+
     {/* <Pagitation totalCount={200} currentPage={1} onChange={onChange} /> */}
 </div>
   )
@@ -177,3 +181,26 @@ function Test2() {
     </section>
   )
 }
+
+/*
+有这个需求主要是, 长度过长要溢出隐藏, 长度不超过时, 背景色只显示在文字那部分
+1. width: auto
+
+card样式
+  width: auto;
+  max-width: 100px;
+  background-color: bisque;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+
+  2. 再套一个盒子,设置display: flex
+
+  然后card只需要设置这里几个
+  background-color: bisque;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+*/

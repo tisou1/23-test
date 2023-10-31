@@ -29,3 +29,13 @@
   
 }
 
+.test-over{
+  width: auto;
+  max-width: 100px; /* 设置最大宽度，背景色只会显示在文本那部分 */
+  background-color: bisque;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+}
+
