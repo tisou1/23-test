@@ -39,3 +39,20 @@
   display: inline-block;
 }
 
+
+// body::-webkit-scrollbar {
+//   // width: 12px; /* 设置滚动条宽度 */
+//   // background: transparent; /* 设置滚动条的背景透明 */
+//   display: none;
+// }
+
+body::-webkit-slider-runnable-track {
+  border-radius: 30px;
+  background: #128;
+  height: 15px;
+}
+
+body::-webkit-scrollbar-thumb{
+  -webkit-appearance: none; /*清除默认样式*/
+  background: transparent;
+}
