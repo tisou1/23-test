@@ -5,3 +5,5 @@ export { default as useTrackEffect } from './useTrackEffect'
 export { default as useWhyUpdate } from './useWhyUpdate'
 
 export { default as useClipboard } from './useClipbord'
+
+export { default as useScrolling } from './useScrolling'

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #container{
+      width: 100vw;
+      height: 200px;
+      background-color: antiquewhite;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <script>
+    const con = document.querySelector('#container')
+    con.addEventListener('mousemove', debounce(function (e) {
+      console.log(this, e)
+    }, 1000, true))
+
+    function debounce(func, delay, immediate) {
+  let timer
+  return function (...args) {
+        if (timer)
+          clearTimeout(timer)
+    
+        // 立即执行
+        if (immediate) {
+          //
+          const callNow = !timer
+          timer = setTimeout(() => {
+            timer = null
+          }, delay)
+          if (callNow)
+            func.apply(this, args)
+        }
+    else {
+          // 箭头函数处理指向问题
+          timer = setTimeout(() => {
+            func.apply(this, args)
+          }, delay)
+        }
+  }
+}
+  </script>
+</body>
+</html>

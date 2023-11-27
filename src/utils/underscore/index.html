@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./index.js"></script>
+  <script>
+    console.log(_, '>>')
+    _.mixin({
+      addOne(num) {
+        return num
+  },
+})
+const dd = _.each([1, 2, 3], (item) => {
+  console.log(item)
+})
+console.log(_(2).addOne())
+  </script>
+</body>
+</html>

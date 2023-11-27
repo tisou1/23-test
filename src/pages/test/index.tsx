@@ -4,6 +4,7 @@ import Svg2 from '~/algorithm.svg'
 import './index.scss'
 import { get, keys, set } from '../../utils'
 import Input from '~/components/Input'
+import { useScrolling } from '~/hooks'
 
 const TContext = createContext({
   name: 'siry',
@@ -11,6 +12,10 @@ const TContext = createContext({
 })
 
 export default function Test(props) {
+  const scrolling = useScrolling()
+
+  console.log('滚动中:', scrolling)
+
   const tags = new Proxy((name, ...args) => {
     console.log(name, ...args)
   }, {
@@ -74,7 +79,7 @@ export default function Test(props) {
    <button onClick={() => {
      window.scrollTo(0, 500)
    }}>滚动</button>
-   <div style={{ width: 200 }}>
+   <div style={{ width: 200 }} className='h-300'>
     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat debitis iusto tempora nemo cupiditate ratione molestiae expedita incidunt! Voluptate a assumenda placeat unde nihil architecto accusantium labore perferendis quam quas.
     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat debitis iusto tempora nemo cupiditate ratione molestiae expedita incidunt! Voluptate a assumenda placeat unde nihil architecto accusantium labore perferendis quam quas.
     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat debitis iusto tempora nemo cupiditate ratione molestiae expedita incidunt! Voluptate a assumenda placeat unde nihil architecto accusantium labore perferendis quam quas.
