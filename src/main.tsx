@@ -16,6 +16,8 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css'
 // core
 import 'primereact/resources/primereact.min.css'
 
+import "virtual:stylex.css";
+
 console.log(routes, '>>')
 
 const root = ReactDOM.createRoot(document.querySelector('#root')!)
