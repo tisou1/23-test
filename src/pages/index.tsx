@@ -20,7 +20,7 @@ function Index() {
       .then((d) => {
         const data = d.data
         console.log(data)
-        console.log(Object.keys(data), Object.entries(data))
+        // console.log(Object.keys(data), Object.entries(data))
       })
   }, [])
   return (
