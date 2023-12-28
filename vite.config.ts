@@ -67,6 +67,11 @@ export default defineConfig({
   ],
   test: {
     // environment: 'happy-dom',
-    include: ['test/**/*.test.{ts,js}', 'src/**/test/*.test.{t,j}s', '**/*.test.{t,j}s'],
+    // 使用import '@testing-library/jest-dom' 需要全局引入expect, it等
+    globals: true,
+    include: ['test/**/*.test.{tsx,jsx}', 'src/**/test/*.test.{t,j}s{,x}', '**/*.test.{t,j}s{,x}'],
+    environment: "jsdom",
+    setupFiles: "./test/setup.ts",
+    // css: true
   },
 })
