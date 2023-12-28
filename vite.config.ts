@@ -32,7 +32,6 @@ export default defineConfig({
         remarkCodeHike,
         {
           lineNumbers: false,
-          showCopyButton: false,
           theme: 'dark-plus',
           skipLanguages: ['mermaid'],
           staticMediaQuery: 'not screen, (max-width: 768px)',

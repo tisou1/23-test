@@ -4,7 +4,6 @@ const styles = stylex.create({
   base: {
     fontSize: 16,
     lineHeight: 1.5,
-    color: 'rgb(60,60,60)',
     color: 'red',
   },
   highlighted: {
