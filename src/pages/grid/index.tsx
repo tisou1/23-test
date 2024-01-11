@@ -53,7 +53,7 @@ export default function Grid() {
         {/* <div className="header bg-red-200 row-span-1 col-span-2">
           header: 
         </div>
-        <div className="sider bg-blue-100 row-span-2 col-span-1">
+        <div className="sider bg-blue-100 row-span-1 col-span-1">
         sider: 
         </div>
         <div className="content bg-pink-200 row-span-1 col-span-1">content</div> */}
@@ -77,13 +77,13 @@ export default function Grid() {
         </div>
         <div className="content bg-pink-200 row-span-1 col-span-1">content</div> */}
       {/* 使用索引和span结合 */}
-       <div className="header bg-red-200 row-span-1 col-[span_1/_3]">
+       {/* <div className="header bg-red-200 row-span-1 col-[span_1/_3]">
           header: 
         </div>
         <div className="sider bg-blue-100 row-[1_/_span_2] col-span-1">
         sider: 
         </div>
-        <div className="content bg-pink-200 row-span-1 col-span-1">content</div>
+        <div className="content bg-pink-200 row-span-1 col-span-1">content</div> */}
     </div>
 
 
