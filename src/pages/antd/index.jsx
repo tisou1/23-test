@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom'
 import React, { useState } from 'react'
-import 'antd/dist/antd.css'
-// import './index.css'
+// import 'antd/dist/antd.css'
+import './index.css'
 import {
   AutoComplete,
   Button,
@@ -16,7 +16,8 @@ import {
   Tooltip,
 } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
-
+import {toast} from 'acud'
+import 'acud/dist/acud.min.css';
 const { Option } = Select
 
 const residences = [
@@ -113,6 +114,13 @@ const PriceInput = ({ value = {}, onChange, id }) => {
       currency: newCurrency,
     })
   }
+  const filterOption = (
+    input,
+    option
+  ) => {
+    console.log(option.props, input, '>>>');
+    return true;
+  };
 
   return (
     <span id="price-ll">
@@ -125,12 +133,14 @@ const PriceInput = ({ value = {}, onChange, id }) => {
         }}
       />
       <Select
+       showSearch
         value={value.currency || currency}
         style={{
           width: 80,
           margin: '0 8px',
         }}
         onChange={onCurrencyChange}
+        filterOption={filterOption}
       >
         <Option value="rmb">RMB</Option>
         <Option value="dollar">Dollar</Option>
@@ -204,6 +214,16 @@ const RegistrationForm = () => {
   }
 
   return (
+    <>
+    <button onClick={() => {
+      toast.error({
+        message: 'http://localhost:5000/bml/project/model-train/job/trainJob/orglbxk3moaxcbytrxh/proj0zspkr1tabhu3v0phttp://localhost:5000/bml/project/modeltrain/job/trainJob/org-lbxk3moaxcbytrxh/proj-0zspkr1tabhu3v0p',
+        duration: 100000
+      });
+
+  }}
+  >message
+  </button>
     <Form
       {...formItemLayout}
       form={form}
@@ -420,6 +440,7 @@ const RegistrationForm = () => {
         </Button>
       </Form.Item>
     </Form>
+    </>
   )
 }
 
