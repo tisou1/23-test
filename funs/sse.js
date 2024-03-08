@@ -1,5 +1,5 @@
-const http = require('http')
-const fs = require('fs')
+const http = require('node:http')
+const fs = require('node:fs')
 
 http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')

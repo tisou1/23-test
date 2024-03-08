@@ -63,8 +63,8 @@ function Workbench(props: any) {
   // console.log(dragging, moving)
 
   return (
-    <div >
-      <div className="main" >
+    <div>
+      <div className="main">
         <div className="workbench-root" ref={ref}>
           <div
             className="workbench-card"
@@ -93,7 +93,9 @@ function Workbench(props: any) {
             </div>
             <div
               onMouseMove={handleMouseMove}
-              style={{ position: 'absolute', inset: '0px', zIndex: 90, backgroundColor: 'red', display: dragging ? 'block' : 'none' }}></div>
+              style={{ position: 'absolute', inset: '0px', zIndex: 90, backgroundColor: 'red', display: dragging ? 'block' : 'none' }}
+            >
+            </div>
           </div>
         </div>
 

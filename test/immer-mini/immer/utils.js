@@ -1,6 +1,6 @@
 import { DRAFT_STATE } from './constants'
 
-export const isDraftable = (value) => {
+export function isDraftable(value) {
   //  // +0, -0, 0, null, undefined, '', NaN, false
   if (!value)
     return false
@@ -27,16 +27,16 @@ function isObject(value) {
  * @param {} state
  * 如果sttae存在copy_,则返回,否则返回base_
  */
-export const latest = (state) => {
+export function latest(state) {
   return state.copy_ || state.base_
 }
 
-export const has = (obj, prop) => {
+export function has(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop)
 }
 
 // 为state附上copy_属性
-export const prepareCopy = (state) => {
+export function prepareCopy(state) {
   if (!state.copy_) {
     if (Array.isArray(state.base_))
       state.copy_ = [...state.base_]
@@ -46,7 +46,7 @@ export const prepareCopy = (state) => {
   }
 }
 
-export const peek = (draft, prop) => {
+export function peek(draft, prop) {
   // 判断传入的state是否被中间对象代理
   const state = draft[DRAFT_STATE]
 
@@ -62,7 +62,7 @@ export const peek = (draft, prop) => {
  * @param {} state
  * 标记节点及其父节点为已修改
  */
-export const markChanged = (state) => {
+export function markChanged(state) {
   if (!state.modified_) {
     state.modified_ = true
     if (state.parent_)
@@ -70,7 +70,7 @@ export const markChanged = (state) => {
   }
 }
 
-export const is = (x, y) => {
+export function is(x, y) {
   if (x === y) {
     if (x !== 0)
       return true

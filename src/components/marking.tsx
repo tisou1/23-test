@@ -29,7 +29,7 @@ export interface RemarkRingProps {
   size?: number
 }
 
-const rootFontSize = parseInt(
+const rootFontSize = Number.parseInt(
   window
     .getComputedStyle(document.documentElement)
     .getPropertyValue('font-size'),

@@ -16,7 +16,7 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css'
 // core
 import 'primereact/resources/primereact.min.css'
 
-import "virtual:stylex.css";
+import 'virtual:stylex.css'
 
 console.log(routes, '>>')
 
@@ -31,12 +31,12 @@ function App() {
 
 root.render(
   // <React.StrictMode>
-    <Provider store={store}>
+  <Provider store={store}>
     <Router>
       <App />
       <ClickToComponent />
     </Router>
     <Footer />
-    </Provider>,
+  </Provider>,
   // </React.StrictMode>,
 )

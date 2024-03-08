@@ -1,9 +1,10 @@
 import React, { useRef } from 'react'
+
 function App() {
   const ref = useRef()
 
   return (
-    <T wrappedComponentRef={ref}/>
+    <T wrappedComponentRef={ref} />
   )
 }
 

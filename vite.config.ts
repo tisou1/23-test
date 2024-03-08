@@ -38,13 +38,14 @@ export default defineConfig({
           autoImport: true,
           autoLink: false,
           showCopyButton: true,
-        }],
+        },
+      ],
     }),
     react(),
     Unocss(),
     Pages({
       // 这里路径会当做普通字符串来进行匹配 全局搜过的文件后缀, 所以只能用字符串
-      extensions: ['ts','js', 'tsx', 'jsx', 'mdx'], // js jsx ts tsx mdx     [tj]s{,x} == [tj]s?(x)
+      extensions: ['ts', 'js', 'tsx', 'jsx', 'mdx'], // js jsx ts tsx mdx     [tj]s{,x} == [tj]s?(x)
       exclude: ['**/components/*.[tj]s{,x}', '**/hooks/*.{t,j}s'],
     }),
 
@@ -70,8 +71,8 @@ export default defineConfig({
     // 使用import '@testing-library/jest-dom' 需要全局引入expect, it等
     globals: true,
     include: ['test/**/*.test.{tsx,jsx}', 'src/**/test/*.test.{t,j}s{,x}', '**/*.test.{t,j}s{,x}'],
-    environment: "jsdom",
-    setupFiles: "./test/setup.ts",
+    environment: 'jsdom',
+    setupFiles: './test/setup.ts',
     // css: true
   },
 })

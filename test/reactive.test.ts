@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { it } from 'vitest'
 
 function isObject(obj) {
   return obj !== null && typeof obj === 'object'

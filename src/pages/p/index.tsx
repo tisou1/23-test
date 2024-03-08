@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import './index.scss'
+
 // svg画图
 const data = { size: 80, value: 0.5592 }
 
@@ -33,7 +34,7 @@ function getParams2(size: number, value: number): string {
 
   return `M ${x} ${y} A ${radius} ${radius} 0 ${largeArc} 1 ${endX} ${endY} ${z}`
 }
-const Donut = (props: any) => {
+function Donut(props: any) {
   const { size, value } = data
   // 半径
   const radius = size / 3
@@ -100,7 +101,7 @@ const Donut = (props: any) => {
   )
 }
 
-const P2 = () => {
+function P2() {
   const { size, value } = data
 
   const strokeWidth = size / 6
@@ -110,10 +111,15 @@ const P2 = () => {
 
   return (
     <svg style={style} viewBox={`0 0 ${size} ${size}`} xmlns="http://www.w3.org/2000/svg">
-      <path fill="none" stroke="red"
+      <path
+        fill="none"
+        stroke="red"
         strokeWidth={strokeWidth}
-        d={`${bgD}`}/>
-      <path fill="none" stroke="orange"
+        d={`${bgD}`}
+      />
+      <path
+        fill="none"
+        stroke="orange"
         strokeWidth={strokeWidth}
         d={`${d}`}
       />

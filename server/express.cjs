@@ -1,5 +1,6 @@
-const fs = require('fs')
+const fs = require('node:fs')
 const express = require('express')
+
 const app = express()// 创建express实例
 
 // 静态文件访问

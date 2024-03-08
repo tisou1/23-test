@@ -90,4 +90,3 @@ export function entries<T extends IDBValidKey, V = any>(customStore = defaultGet
     ]).then(([keys, values]) => keys.map((key, i) => [key, values[i]]))
   })
 }
-

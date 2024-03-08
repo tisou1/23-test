@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 
 interface PagitationProps {
   // 总数据
@@ -86,26 +86,28 @@ const Pagitation: React.FC<PagitationProps> = (props) => {
     <div className="flex justify-start items-center p-2">
       <div
         className={`${currentPage === 1 ? 'cursor-not-allowed' : 'cursor-pointer  hover:text-blue-500 '} `}
-        onClick={prevChange}>
-          Previus
+        onClick={prevChange}
+      >
+        Previus
       </div>
-      <section className='mx-3 flex justify-start items-center'>
+      <section className="mx-3 flex justify-start items-center">
         {
           (_paginate!).map((v, i) => (
             <div
               key={`${v}-${i}`}
               className={`mx-1 cursor-pointer hover:text-blue-500 ${currentPage === v ? 'text-blue-500' : ''}`}
               onClick={() => changePage(v)}
-              >
-                {v}
+            >
+              {v}
             </div>
           ))
         }
       </section>
       <div
-         className={`${currentPage === lastPage ? 'cursor-not-allowed' : 'cursor-pointer  hover:text-blue-500'} `}
-        onClick={nextChange}>
-          Next
+        className={`${currentPage === lastPage ? 'cursor-not-allowed' : 'cursor-pointer  hover:text-blue-500'} `}
+        onClick={nextChange}
+      >
+        Next
       </div>
     </div>
   )

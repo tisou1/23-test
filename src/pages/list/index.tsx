@@ -1,9 +1,10 @@
 import { FixedSizeList } from 'react-window'
+
 // import { FixedSizeList } from './components'
 
 export default function List() {
   return (
-    <section className='bg-blue-200 w-200px'>
+    <section className="bg-blue-200 w-200px">
       <FixedSizeList
         width={200}
         height={300}
@@ -18,7 +19,11 @@ export default function List() {
   )
 }
 
-const Row = ({ index, style }) => (
-  <div style={style}>Row {index}</div>
-)
-
+function Row({ index, style }) {
+  return (
+    <div style={style}>
+      Row
+      {index}
+    </div>
+  )
+}

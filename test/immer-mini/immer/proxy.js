@@ -106,4 +106,3 @@ export function createProxy(base, parent) {
 
   return proxy
 }
-

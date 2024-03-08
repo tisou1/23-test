@@ -50,10 +50,14 @@ export default function App() {
         Add
       </Button>
 
-      <div className='list border border-blue-100'>
+      <div className="list border border-blue-100">
         {
           friends?.map(friend => (
-            <li key={friend.id}>{friend.name} {friend.age}</li>
+            <li key={friend.id}>
+              {friend.name}
+              {' '}
+              {friend.age}
+            </li>
           ))
         }
       </div>

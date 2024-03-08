@@ -47,7 +47,7 @@ const isAppearanceTransition = document.startViewTransition
 export function toggleDarkTransition(event?: MouseEvent, isDark, toggleDark) {
   if (!isAppearanceTransition || !event) {
     // isDark.value = !isDark.value
-    
+
     toggleDark()
     return
   }

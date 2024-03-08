@@ -10,8 +10,8 @@ export default function App() {
   }
 
   return (
-    <div >
-      <input ref={ref}/>
+    <div>
+      <input ref={ref} />
       <button onClick={handleClick}>复制</button>
       {
         isCopied ? `当前copy的值是${text}` : ''

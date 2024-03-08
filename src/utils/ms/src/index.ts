@@ -88,10 +88,10 @@ function parse(str: string): number {
     = /^(?<value>-?(?:\d+)?\.?\d+) *(?<type>milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
       str,
     )
-  const groups = match?.groups as { value: string; type?: string } | undefined
+  const groups = match?.groups as { value: string, type?: string } | undefined
   if (!groups)
-    return NaN
-  const n = parseFloat(groups.value)
+    return Number.NaN
+  const n = Number.parseFloat(groups.value)
   const type = (groups.type || 'ms').toLocaleLowerCase() as Lowercase<Unit>
   switch (type) {
     case 'years':

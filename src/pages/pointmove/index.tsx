@@ -32,6 +32,7 @@ function Dot({ position, opacity }) {
       top: -20,
       width: 40,
       height: 40,
-    }} />
+    }}
+    />
   )
 }

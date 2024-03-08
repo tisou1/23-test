@@ -48,7 +48,7 @@ export default function Chrono1() {
 
   return (
     <div style={{ width: '500px', height: '400px' }}>
-        <Chrono items={items} />
-      </div>
+      <Chrono items={items} />
+    </div>
   )
 }

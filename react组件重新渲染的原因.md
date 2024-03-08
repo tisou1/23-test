@@ -8,44 +8,40 @@
 
 props发生改变,说明父组件重新渲染了
 
-
-
 [参考链接](https://www.developerway.com/posts/react-re-renders-guide)
-
-
 
 ## 阻止重新渲染
 
 错误方式: 在组件渲染阶段声明子组件
 
 ```jsx
-import { useState, useEffect } from "react";
-import "./styles.css";
+import { useEffect, useState } from 'react'
+import './styles.css'
 
-const Component = () => {
-  const [state, setState] = useState(1);
+function Component() {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
   const VerySlowComponent = () => {
-    console.log("Very slow component re-renders");
+    console.log('Very slow component re-renders')
     useEffect(() => {
-      console.log("Very slow component re-mounts");
-    }, []);
-    return <div>Very slow component</div>;
-  };
+      console.log('Very slow component re-mounts')
+    }, [])
+    return <div>Very slow component</div>
+  }
 
   return (
     <>
       <button onClick={onClick}>click here</button>
       <VerySlowComponent />
     </>
-  );
-};
+  )
+}
 
-const App = () => {
+function App() {
   return (
     <>
       <h2>Open console, click a button</h2>
@@ -53,64 +49,67 @@ const App = () => {
 
       <Component />
     </>
-  );
-};
+  )
+}
 
-export default App;
-
+export default App
 ```
 
 当state每次变化时, `VerySlowComponent`都会重新创建
-
-
 
 ### 状态下移
 
 将变化的部分移动到子组件中
 
 ```jsx
-import { useState } from "react";
-import "./styles.css";
+import { useState } from 'react'
+import './styles.css'
 
-const VerySlowComponent = () => {
-  console.log("Very slow component re-renders");
-  return <div>Very slow component</div>;
-};
+function VerySlowComponent() {
+  console.log('Very slow component re-renders')
+  return <div>Very slow component</div>
+}
 
-const FullComponent = () => {
-  const [state, setState] = useState(1);
+function FullComponent() {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
   return (
     <>
       <h3>component with everything</h3>
       <p>Click this button - "slow" component will re-render</p>
-      <p>Re-render count: {state}</p>
+      <p>
+        Re-render count:
+        {state}
+      </p>
       <button onClick={onClick}>click here</button>
       <VerySlowComponent />
     </>
-  );
-};
+  )
+}
 
-const ComponentWithButton = () => {
-  const [state, setState] = useState(1);
+function ComponentWithButton() {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
   return (
     <>
-      <p>Re-render count: {state}</p>
+      <p>
+        Re-render count:
+        {state}
+      </p>
       <button onClick={onClick}>click here</button>
     </>
-  );
-};
+  )
+}
 
-const SplitComponent = () => {
+function SplitComponent() {
   return (
     <>
       <h3>component with state moved down</h3>
@@ -118,10 +117,10 @@ const SplitComponent = () => {
       <ComponentWithButton />
       <VerySlowComponent />
     </>
-  );
-};
+  )
+}
 
-const App = () => {
+function App() {
   return (
     <>
       <h2>Open console, click a button</h2>
@@ -132,11 +131,10 @@ const App = () => {
       <hr />
       <SplitComponent />
     </>
-  );
-};
+  )
+}
 
-export default App;
-
+export default App
 ```
 
 这里  `<FullComponent />`和 `<SplitComponent />`就是两种方式, 后者就是状态下移后的优化
@@ -146,47 +144,53 @@ export default App;
 变化的部分单独成一个组件,把不变的部分通过children传递给变化的组件
 
 ```jsx
-import { useState } from "react";
-import "./styles.css";
+import { useState } from 'react'
+import './styles.css'
 
-const VerySlowComponent = () => {
-  console.log("Very slow component re-renders");
-  return <div>Very slow component</div>;
-};
+function VerySlowComponent() {
+  console.log('Very slow component re-renders')
+  return <div>Very slow component</div>
+}
 
-const FullComponent = () => {
-  const [state, setState] = useState(1);
+function FullComponent() {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
   return (
     <div onClick={onClick} className="click-block">
       <h3>component with everything</h3>
       <p>Click this component - "slow" component will re-render</p>
-      <p>Re-render count: {state}</p>
+      <p>
+        Re-render count:
+        {state}
+      </p>
       <VerySlowComponent />
     </div>
-  );
-};
+  )
+}
 
-const ComponentWithClick = ({ children }: { children: ReactNode }) => {
-  const [state, setState] = useState(1);
+function ComponentWithClick({ children }: { children: ReactNode }) {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
   return (
     <div onClick={onClick} className="click-block">
-      <p>Re-render count: {state}</p>
+      <p>
+        Re-render count:
+        {state}
+      </p>
       {children}
     </div>
-  );
-};
+  )
+}
 
-const SplitComponent = () => {
+function SplitComponent() {
   return (
     <>
       <ComponentWithClick>
@@ -198,10 +202,10 @@ const SplitComponent = () => {
         </>
       </ComponentWithClick>
     </>
-  );
-};
+  )
+}
 
-const App = () => {
+function App() {
   return (
     <>
       <h2>Open console, click a button</h2>
@@ -212,11 +216,10 @@ const App = () => {
       <hr />
       <SplitComponent />
     </>
-  );
-};
+  )
+}
 
-export default App;
-
+export default App
 ```
 
 ### 组件作为props
@@ -224,62 +227,68 @@ export default App;
 将状态封装在较小的组件内，并且重型组件作为 props 传递给它。道具不受状态变化的影响，因此重型组件不会重新渲染。
 
 ```jsx
-import { useState, ReactNode } from "react";
-import "./styles.css";
+import { ReactNode, useState } from 'react'
+import './styles.css'
 
-const VerySlowComponent = () => {
-  console.log("Very slow component re-renders");
-  return <div>Very slow component</div>;
-};
+function VerySlowComponent() {
+  console.log('Very slow component re-renders')
+  return <div>Very slow component</div>
+}
 
-const AnotherSlowComponent = () => {
-  console.log("Another slow component re-renders");
-  return <div>Another slow component</div>;
-};
+function AnotherSlowComponent() {
+  console.log('Another slow component re-renders')
+  return <div>Another slow component</div>
+}
 
-const FullComponent = () => {
-  const [state, setState] = useState(1);
+function FullComponent() {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
   return (
     <div onClick={onClick} className="click-block">
       <h3>component with everything</h3>
       <p>Click this component - "slow" component will re-render</p>
-      <p>Re-render count: {state}</p>
+      <p>
+        Re-render count:
+        {state}
+      </p>
       <VerySlowComponent />
       <p>Something</p>
       <AnotherSlowComponent />
     </div>
-  );
-};
+  )
+}
 
-const ComponentWithClick = ({
+function ComponentWithClick({
   left,
   right
 }: {
-  left: ReactNode;
-  right: ReactNode;
-}) => {
-  const [state, setState] = useState(1);
+  left: ReactNode
+  right: ReactNode
+}) {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
   return (
     <div onClick={onClick} className="click-block">
-      <p>Re-render count: {state}</p>
+      <p>
+        Re-render count:
+        {state}
+      </p>
       {left}
       <p>Something</p>
       {right}
     </div>
-  );
-};
+  )
+}
 
-const SplitComponent = () => {
+function SplitComponent() {
   const left = (
     <>
       <h3>component with slow components passed as props</h3>
@@ -287,18 +296,18 @@ const SplitComponent = () => {
 
       <VerySlowComponent />
     </>
-  );
+  )
 
-  const right = <AnotherSlowComponent />;
+  const right = <AnotherSlowComponent />
 
   return (
     <>
       <ComponentWithClick left={left} right={right} />
     </>
-  );
-};
+  )
+}
 
-const App = () => {
+function App() {
   return (
     <>
       <h2>Open console, click a button</h2>
@@ -309,11 +318,10 @@ const App = () => {
       <hr />
       <SplitComponent />
     </>
-  );
-};
+  )
+}
 
-export default App;
-
+export default App
 ```
 
 ### 使用Memo
@@ -321,36 +329,38 @@ export default App;
 #### 子组件未接收props情况(单使用memo)
 
 ```jsx
-import React, { useState } from "react";
-import "./styles.css";
+import React, { useState } from 'react'
+import './styles.css'
 
-const Child = () => {
-  console.log("Child re-renders");
-  return <></>;
-};
+function Child() {
+  console.log('Child re-renders')
+  return <></>
+}
 
-const ChildMemo = React.memo(Child);
+const ChildMemo = React.memo(Child)
 
-const App = () => {
-  const [state, setState] = useState(1);
+function App() {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
   return (
     <>
       <h2>Open console, click a button</h2>
       <p>Re-render should not happen since the child is memoized</p>
-      <button onClick={onClick}>click here {state}</button>
+      <button onClick={onClick}>
+        click here
+        {state}
+      </button>
 
       <ChildMemo />
     </>
-  );
-};
+  )
+}
 
-export default App;
-
+export default App
 ```
 
 #### 子组件接收props情况(memo + useMemo/useCallback)
@@ -360,24 +370,24 @@ export default App;
 经过`useMemo`或者`useCallback`缓存之后,Memo在浅对比组件的`props`时就会通过,不会重新渲染子组件
 
 ```jsx
-import React, { useState, useMemo } from "react";
-import "./styles.css";
+import React, { useMemo, useState } from 'react'
+import './styles.css'
 
-const Child = ({ value }: { value: { value: string } }) => {
-  console.log("Child re-renders", value.value);
-  return <>{value.value}</>;
-};
+function Child({ value }: { value: { value: string } }) {
+  console.log('Child re-renders', value.value)
+  return <>{value.value}</>
+}
 
-const ChildMemo = React.memo(Child);
+const ChildMemo = React.memo(Child)
 
-const App = () => {
-  const [state, setState] = useState(1);
+function App() {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
-  const memoValue = useMemo(() => ({ value: "second" }), []);
+  const memoValue = useMemo(() => ({ value: 'second' }), [])
 
   return (
     <>
@@ -387,61 +397,56 @@ const App = () => {
 
       <button onClick={onClick}>click here</button>
       <br />
-      <ChildMemo value={{ value: "first" }} />
+      <ChildMemo value={{ value: 'first' }} />
       <br />
       <ChildMemo value={memoValue} />
     </>
-  );
-};
+  )
+}
 
-export default App;
-
+export default App
 ```
 
-
-
 > Memo必须作用于子元素/通过props传递的属性, 作用在父组件上是不行的
-> 
+>
 > 下面例子中`ParentMemo`组件就没起到缓存作用
 
-
-
 ```jsx
-import React, { useState, useMemo, ReactNode } from "react";
-import "./styles.css";
+import React, { ReactNode, useMemo, useState } from 'react'
+import './styles.css'
 
-const Child = ({ value }: { value: { value: string } }) => {
-  console.log("Child re-renders", value.value);
-  return <>{value.value}</>;
-};
+function Child({ value }: { value: { value: string } }) {
+  console.log('Child re-renders', value.value)
+  return <>{value.value}</>
+}
 
-const ChildMemo = React.memo(Child);
+const ChildMemo = React.memo(Child)
 
-const Parent = ({
+function Parent({
   left,
   children
 }: {
-  children: ReactNode;
-  left: ReactNode;
-}) => {
+  children: ReactNode
+  left: ReactNode
+}) {
   return (
     <div>
       {left}
       {children}
     </div>
-  );
-};
+  )
+}
 
-const ParentMemo = React.memo(Parent);
+const ParentMemo = React.memo(Parent)
 
-const App = () => {
-  const [state, setState] = useState(1);
+function App() {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
-  const memoValue = useMemo(() => ({ value: "memoized" }), []);
+  const memoValue = useMemo(() => ({ value: 'memoized' }), [])
 
   return (
     <>
@@ -452,48 +457,45 @@ const App = () => {
       <button onClick={onClick}>click here</button>
 
       <ParentMemo
-        left={<Child value={{ value: "left child of ParentMemo" }} />}
+        left={<Child value={{ value: 'left child of ParentMemo' }} />}
       >
-        <Child value={{ value: "child of ParentMemo" }} />
+        <Child value={{ value: 'child of ParentMemo' }} />
       </ParentMemo>
 
       <Parent left={<ChildMemo value={memoValue} />}>
         <ChildMemo value={memoValue} />
       </Parent>
     </>
-  );
-};
+  )
+}
 
-export default App;
-
+export default App
 ```
-
-
 
 > 如果组件使用非原始值作为 `useEffect` 、 `useMemo` 、 `useCallback` 等挂钩中的依赖项，则应将其记忆化。
 
 ```jsx
-import React, { useState, useMemo, useEffect } from "react";
-import "./styles.css";
+import React, { useEffect, useMemo, useState } from 'react'
+import './styles.css'
 
-const App = () => {
-  const [state, setState] = useState(1);
+function App() {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
-  const value = { value: "not memoized" };
+  const value = { value: 'not memoized' }
 
-  const memoValue = useMemo(() => ({ value: "memoized" }), []);
-
-  useEffect(() => {
-    console.log("never triggered");
-  }, [memoValue]);
+  const memoValue = useMemo(() => ({ value: 'memoized' }), [])
 
   useEffect(() => {
-    console.log("triggered on every re-render");
-  }, [value]);
+    console.log('never triggered')
+  }, [memoValue])
+
+  useEffect(() => {
+    console.log('triggered on every re-render')
+  }, [value])
 
   return (
     <>
@@ -502,14 +504,11 @@ const App = () => {
 
       <button onClick={onClick}>click here</button>
     </>
-  );
-};
+  )
+}
 
-export default App;
-
+export default App
 ```
-
-
 
 #### useMemo用于昂贵的计算
 
@@ -520,45 +519,45 @@ useMemo的作用之一是避免每次重新渲染的昂贵计算
 >  因此`useMemo`的典型应用是记忆React元素
 
 ```jsx
-import React, { useState, useMemo } from "react";
-import "./styles.css";
+import React, { useMemo, useState } from 'react'
+import './styles.css'
 
-const Child = ({ value }: { value: { value: number } }) => {
-  console.log("Child re-renders", value.value);
-  return <>{value.value}</>;
-};
+function Child({ value }: { value: { value: number } }) {
+  console.log('Child re-renders', value.value)
+  return <>{value.value}</>
+}
 
-const values = [1, 2, 3];
+const values = [1, 2, 3]
 
-const App = () => {
-  const [state, setState] = useState(1);
+function App() {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
   const items = useMemo(() => {
-    return values.map((val) => <Child value={{ value: val }} />);
-  }, []);
+    return values.map(val => <Child value={{ value: val }} />)
+  }, [])
 
   return (
     <>
       <h2>Open console, click a button</h2>
       <p>Children should not re-render</p>
 
-      <button onClick={onClick}>click here {state}</button>
+      <button onClick={onClick}>
+        click here
+        {state}
+      </button>
       <br />
       <br />
       {items}
     </>
-  );
-};
+  )
+}
 
-export default App;
-
+export default App
 ```
-
-
 
 ### 提高列表渲染的性能
 
@@ -571,74 +570,68 @@ export default App;
 ### 防止context上下文重新渲染: 记忆Provider的值
 
 ```jsx
-import React, {
-  useState,
-  createContext,
-  useContext,
-  useMemo,
-  ReactNode
-} from "react";
-import "./styles.css";
+import React, { ReactNode, createContext, useContext, useMemo, useState } from 'react'
+import './styles.css'
 
-const Context = createContext<{ value: number }>({ value: 1 });
-const Context2 = createContext<{ value: number }>({ value: 1 });
+const Context = createContext < { value: number } > ({ value: 1 })
+const Context2 = createContext < { value: number } > ({ value: 1 })
 
-const Provider = ({ children }: { children: ReactNode }) => {
-  const [state, setState] = useState(1);
+function Provider({ children }: { children: ReactNode }) {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
   const value = useMemo(
     () => ({
       value: state
     }),
     [state]
-  );
-  return <Context.Provider value={value}>{children}</Context.Provider>;
-};
+  )
+  return <Context.Provider value={value}>{children}</Context.Provider>
+}
 
-const Provider2 = ({ children }: { children: ReactNode }) => {
-  const [state, setState] = useState(1);
+function Provider2({ children }: { children: ReactNode }) {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
   const value = {
     value: state
-  };
+  }
 
-  return <Context.Provider value={value}>{children}</Context.Provider>;
-};
+  return <Context.Provider value={value}>{children}</Context.Provider>
+}
 
-const useValue = () => useContext(Context);
-const useValue2 = () => useContext(Context2);
+const useValue = () => useContext(Context)
+const useValue2 = () => useContext(Context2)
 
-const Child1 = () => {
-  const { value } = useValue();
-  const { value: value2 } = useValue2();
-  console.log("Child1 re-renders: ", value, value2);
-  return <></>;
-};
+function Child1() {
+  const { value } = useValue()
+  const { value: value2 } = useValue2()
+  console.log('Child1 re-renders: ', value, value2)
+  return <></>
+}
 
-const Child2 = () => {
-  const { value } = useValue();
-  const { value: value2 } = useValue2();
-  console.log("Child2 re-renders", value, value2);
-  return <></>;
-};
+function Child2() {
+  const { value } = useValue()
+  const { value: value2 } = useValue2()
+  console.log('Child2 re-renders', value, value2)
+  return <></>
+}
 
-const Child1Memo = React.memo(Child1);
-const Child2Memo = React.memo(Child2);
+const Child1Memo = React.memo(Child1)
+const Child2Memo = React.memo(Child2)
 
-const App = () => {
-  const [state, setState] = useState(1);
+function App() {
+  const [state, setState] = useState(1)
 
   const onClick = () => {
-    setState(state + 1);
-  };
+    setState(state + 1)
+  }
 
   return (
     <Provider>
@@ -648,16 +641,18 @@ const App = () => {
           Children will unnecessary re-render because of the second provider,
           which doesn't memoize value
         </p>
-        <button onClick={onClick}>button {state}</button>
+        <button onClick={onClick}>
+          button
+          {state}
+        </button>
         <Child1Memo />
         <Child2Memo />
       </Provider2>
     </Provider>
-  );
-};
+  )
+}
 
-export default App;
-
+export default App
 ```
 
 > Children will unnecessary re-render because of the second provider, which doesn't memoize value
@@ -666,50 +661,50 @@ export default App;
 
 ```jsx
 import {
-  useState,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
   createContext,
   useContext,
-  ReactNode,
-  Dispatch,
-  SetStateAction
-} from "react";
-import "./styles.css";
+  useState
+} from 'react'
+import './styles.css'
 
-const ContextData = createContext<number>(1);
-const ContextApi = createContext<Dispatch<SetStateAction<number>>>(
+const ContextData = createContext < number > (1)
+const ContextApi = createContext < Dispatch < SetStateAction < number >>> (
   () => undefined
-);
-const Provider = ({ children }: { children: ReactNode }) => {
-  const [state, setState] = useState(1);
+)
+function Provider({ children }: { children: ReactNode }) {
+  const [state, setState] = useState(1)
 
   return (
     <ContextData.Provider value={state}>
       <ContextApi.Provider value={setState}>{children}</ContextApi.Provider>
     </ContextData.Provider>
-  );
-};
+  )
+}
 
-const useData = () => useContext(ContextData);
-const useApi = () => useContext(ContextApi);
+const useData = () => useContext(ContextData)
+const useApi = () => useContext(ContextApi)
 
-const Child1 = () => {
-  const api = useApi();
-  console.log("Child that uses API re-renders");
+function Child1() {
+  const api = useApi()
+  console.log('Child that uses API re-renders')
 
   const onClick = () => {
-    api(Math.random());
-  };
+    api(Math.random())
+  }
 
-  return <button onClick={onClick}>Set random value to context</button>;
-};
+  return <button onClick={onClick}>Set random value to context</button>
+}
 
-const Child2 = () => {
-  const value = useData();
-  console.log("Data child re-renders", value);
-  return <>{value}</>;
-};
+function Child2() {
+  const value = useData()
+  console.log('Data child re-renders', value)
+  return <>{value}</>
+}
 
-const App = () => {
+function App() {
   return (
     <Provider>
       <h2>Open console, click a button</h2>
@@ -719,34 +714,31 @@ const App = () => {
       <Child1 />
       <Child2 />
     </Provider>
-  );
-};
+  )
+}
 
-export default App;
-
+export default App
 ```
-
-
 
 ###  将多个数据拆分
 
 ```jsx
 import {
-  useState,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
   createContext,
   useContext,
-  ReactNode,
-  Dispatch,
-  SetStateAction
-} from "react";
-import "./styles.css";
+  useState
+} from 'react'
+import './styles.css'
 
-const ContextData1 = createContext<number>(1);
-const ContextData2 = createContext<string>("bla");
+const ContextData1 = createContext < number > (1)
+const ContextData2 = createContext < string > ('bla')
 
-const Provider = ({ children }: { children: ReactNode }) => {
-  const [numState, setNumState] = useState(1);
-  const [strState, setStrState] = useState("bla");
+function Provider({ children }: { children: ReactNode }) {
+  const [numState, setNumState] = useState(1)
+  const [strState, setStrState] = useState('bla')
 
   return (
     <ContextData1.Provider value={numState}>
@@ -760,27 +752,27 @@ const Provider = ({ children }: { children: ReactNode }) => {
         {children}
       </ContextData2.Provider>
     </ContextData1.Provider>
-  );
-};
+  )
+}
 
-const useNumData = () => useContext(ContextData1);
-const useStrData = () => useContext(ContextData2);
+const useNumData = () => useContext(ContextData1)
+const useStrData = () => useContext(ContextData2)
 
-const Child1 = () => {
-  const num = useNumData();
-  console.log("Child that uses num data re-renders");
+function Child1() {
+  const num = useNumData()
+  console.log('Child that uses num data re-renders')
 
-  return <>{num}</>;
-};
+  return <>{num}</>
+}
 
-const Child2 = () => {
-  const str = useStrData();
-  console.log("Child that uses string data re-renders");
+function Child2() {
+  const str = useStrData()
+  console.log('Child that uses string data re-renders')
 
-  return <>{str}</>;
-};
+  return <>{str}</>
+}
 
-const App = () => {
+function App() {
   return (
     <Provider>
       <h2>Open console, click a button</h2>
@@ -791,11 +783,10 @@ const App = () => {
       <Child1 />
       <Child2 />
     </Provider>
-  );
-};
+  )
+}
 
-export default App;
-
+export default App
 ```
 
 ### 上下文选择器
@@ -879,4 +870,3 @@ const App = () => {
 export default App;
 
 ```
-

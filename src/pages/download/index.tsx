@@ -1,4 +1,3 @@
-import fs from 'node:fs'
 import React from 'react'
 import axios from 'axios'
 import JSZip from 'jszip'
@@ -33,12 +32,12 @@ export default function Download() {
   return (
     <div>
       <button onClick={handleClick}>下载</button>
-      <div className='pdf'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo nostrum blanditiis quibusdam magni cumque placeat quidem saepe, ut ipsa distinctio totam ad deleniti illum voluptatum rem eveniet consectetur repellat magnam.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, atque obcaecati doloribus labore et odit minus vitae reiciendis beatae aliquid, magni error numquam assumenda laudantium doloremque temporibus expedita maiores modi?
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae eum blanditiis facere inventore maiores sequi fugiat et sunt, consequatur architecto at libero excepturi qui labore dignissimos. Delectus doloremque voluptas velit?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil molestias quasi eveniet quos, omnis mollitia fugiat ipsum accusantium delectus sapiente id, ex unde minima, aperiam sint soluta excepturi tempore vero?
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos omnis quisquam temporibus modi dolores fugiat quae repudiandae, a ratione vel commodi illum quia necessitatibus veniam laboriosam itaque? Assumenda, corrupti iusto?
+      <div className="pdf">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo nostrum blanditiis quibusdam magni cumque placeat quidem saepe, ut ipsa distinctio totam ad deleniti illum voluptatum rem eveniet consectetur repellat magnam.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, atque obcaecati doloribus labore et odit minus vitae reiciendis beatae aliquid, magni error numquam assumenda laudantium doloremque temporibus expedita maiores modi?
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae eum blanditiis facere inventore maiores sequi fugiat et sunt, consequatur architecto at libero excepturi qui labore dignissimos. Delectus doloremque voluptas velit?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil molestias quasi eveniet quos, omnis mollitia fugiat ipsum accusantium delectus sapiente id, ex unde minima, aperiam sint soluta excepturi tempore vero?
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos omnis quisquam temporibus modi dolores fugiat quae repudiandae, a ratione vel commodi illum quia necessitatibus veniam laboriosam itaque? Assumenda, corrupti iusto?
       </div>
     </div>
   )

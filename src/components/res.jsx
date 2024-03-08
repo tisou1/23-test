@@ -34,33 +34,33 @@ function ResponseResizer(props) {
   }
 
   return (
-        <div className="response-main">
-            <div className="workbench-root" ref={ref}>
-                <div
-                    className="workbench-card"
-                    style={{ userSelect: dragging ? 'none' : 'inherit' }}
-                    onMouseLeave={handleMouseLeave}
-                >
-                    <div className="workbench-card-left card-item" style={{ width: siderWidth }}>
-                        {leftCard}
-                    </div>
-                    <div className="mosaic-split row" onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
-                        <div className="mosaic-split-line" />
-                    </div>
-                    <div className="workbench-card-right card-item">{rightCard}</div>
-                    <div
-                        onMouseMove={handleMouseMove}
-                        style={{
-                          position: 'absolute',
-                          inset: '0px',
-                          zIndex: 90,
-                          backgroundColor: 'transpratent',
-                          display: dragging ? 'block' : 'none',
-                        }}
-                    />
-                </div>
-            </div>
+    <div className="response-main">
+      <div className="workbench-root" ref={ref}>
+        <div
+          className="workbench-card"
+          style={{ userSelect: dragging ? 'none' : 'inherit' }}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div className="workbench-card-left card-item" style={{ width: siderWidth }}>
+            {leftCard}
+          </div>
+          <div className="mosaic-split row" onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
+            <div className="mosaic-split-line" />
+          </div>
+          <div className="workbench-card-right card-item">{rightCard}</div>
+          <div
+            onMouseMove={handleMouseMove}
+            style={{
+              position: 'absolute',
+              inset: '0px',
+              zIndex: 90,
+              backgroundColor: 'transpratent',
+              display: dragging ? 'block' : 'none',
+            }}
+          />
         </div>
+      </div>
+    </div>
   )
 }
 

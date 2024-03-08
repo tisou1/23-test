@@ -8,9 +8,12 @@ export default function App() {
     setMarkdownSource('# React')
   }, [])
   return (
-    <div className='bg-blue-100'>
+    <div className="bg-blue-100">
       <div>{reactContent}</div>
-      <div> <Remark>{`
+      <div>
+        {' '}
+        <Remark>
+          {`
 # header
 
 1. ordered
@@ -20,7 +23,9 @@ export default function App() {
 
 - 11111
 - 2222
-`}</Remark></div>
+`}
+        </Remark>
+      </div>
     </div>
   )
 }

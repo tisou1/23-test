@@ -59,7 +59,8 @@ function TextTypingEffectWithTextsFadeOut() {
         }`}
         key={textIndex}
       >
-        {textToShow}{' '}
+        {textToShow}
+        {' '}
         <div
           className={`ml-2 h-3 w-3 rounded-full bg-black duration-300 bg-red-300 dark:bg-red-500 ${
             fadeCircle ? '' : 'h-0 w-0 opacity-0'

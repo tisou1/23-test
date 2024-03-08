@@ -1,4 +1,4 @@
-import stylex from '@stylexjs/stylex';
+import stylex from '@stylexjs/stylex'
 
 const styles = stylex.create({
   base: {
@@ -11,7 +11,7 @@ const styles = stylex.create({
   },
 })
 
-console.log(styles)
+console.log(styles);
 
 export default function StyleX() {
   return (

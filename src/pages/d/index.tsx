@@ -63,40 +63,45 @@ function Workbench(props: any) {
   // console.log(dragging, moving)
 
   return (
-        <div style={{ width: 800, height: 600 }}>
-            <div className="main" style={{ height: '100vh' }}>
-                <div className="workbench-root" ref={ref}>
-                    <div
-                        className="workbench-card"
-                        onMouseLeave={handleMouseLeave}
-                    >
-                        <div
+    <div style={{ width: 800, height: 600 }}>
+      <div className="main" style={{ height: '100vh' }}>
+        <div className="workbench-root" ref={ref}>
+          <div
+            className="workbench-card"
+            onMouseLeave={handleMouseLeave}
+          >
+            <div
 
-                            className="workbench-card-left card-item"
-                            style={{ inset: `0% ${rightPercent}% 0% 0%` }}
-                        >left</div>
-                        <div
-                            className="mosaic-split row"
-                            style={{ inset: `0% 0% 0% ${leftPercent}%` }}
-                            onMouseDown={handleMouseDown}
-                            onMouseUp={handleMouseUp}
-                        >
-                            <div
-                                className="mosaic-split-line"
-                            />
-                        </div>
-                        <div
-                            className="workbench-card-right card-item"
-                            style={{ inset: `0% 0% 0% ${leftPercent}%` }}
-                        ></div>
-                        <div
-                            onMouseMove={handleMouseMove}
-                            style={{ position: 'absolute', inset: '0px', zIndex: 90, backgroundColor: 'red', display: dragging ? 'block' : 'none' }}></div>
-                    </div>
-                </div>
-
+              className="workbench-card-left card-item"
+              style={{ inset: `0% ${rightPercent}% 0% 0%` }}
+            >
+              left
             </div>
+            <div
+              className="mosaic-split row"
+              style={{ inset: `0% 0% 0% ${leftPercent}%` }}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+            >
+              <div
+                className="mosaic-split-line"
+              />
+            </div>
+            <div
+              className="workbench-card-right card-item"
+              style={{ inset: `0% 0% 0% ${leftPercent}%` }}
+            >
+            </div>
+            <div
+              onMouseMove={handleMouseMove}
+              style={{ position: 'absolute', inset: '0px', zIndex: 90, backgroundColor: 'red', display: dragging ? 'block' : 'none' }}
+            >
+            </div>
+          </div>
         </div>
+
+      </div>
+    </div>
   )
 }
 

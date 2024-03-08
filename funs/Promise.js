@@ -175,15 +175,12 @@ function resolvePromise(promise2, x, resolve, reject) {
 
       try {
         // 如果resolved以参数y进行调用,则运行resolvePromise
-        then.call(x,
-          (y) => {
+        then.call(x,          (y) => {
             if (called)
               return
             called = true
             resolvePromise(promise2, y, resolve, reject)
-          },
-          // 如果rejected以参数r进行调用,则运行resolvePromise
-          (r) => {
+          },          // 如果rejected以参数r进行调用,则运行resolvePromise          (r) => {
             if (called)
               return
             called = true
@@ -222,4 +219,3 @@ MyPromise.deferred = function () {
 }
 
 module.exports = MyPromise
-

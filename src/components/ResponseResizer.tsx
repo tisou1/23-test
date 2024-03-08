@@ -43,8 +43,8 @@ const ResponseResizer: React.FC<ResizerProps> = (props) => {
     const start = (e: any) => {
       setDragging(true)
       startX = e.clientX
-      startWidthLeft = parseInt(getComputedStyle(refLeft?.current, null).width, 10)
-      startWidthRight = parseInt(getComputedStyle(refRight?.current, null).width, 10)
+      startWidthLeft = Number.parseInt(getComputedStyle(refLeft?.current, null).width, 10)
+      startWidthRight = Number.parseInt(getComputedStyle(refRight?.current, null).width, 10)
       document.addEventListener('mousemove', move)
       document.addEventListener('mouseup', end)
     }
@@ -76,37 +76,37 @@ const ResponseResizer: React.FC<ResizerProps> = (props) => {
     return leftCard
 
   return (
-        <div className="response-main">
-            <div className="workbench-root">
-                <div className="workbench-card" style={{ userSelect: dragging ? 'none' : 'inherit' }}>
-                    <div
-                        className='workbench-card-left card-item'
-                        style={{
-                          width: hideRightCard ? '100%' : defaultLeftWidth,
-                          minWidth: minLeftWidth,
-                          maxWidth: hideRightCard ? 'max-content' : maxLeftWidth,
-                        }}
-                        ref={refLeft}
-                    >
-                        {leftCard}
-                    </div>
-                    <div className={classNames('mosaic-split', 'row', { 'hide-right-card': hideRightCard })} ref={refBar}>
-                        <div className="mosaic-split-line" />
-                    </div>
-                    <div
-                        className="workbench-card-right card-item"
-                        ref={refRight}
-                        style={{
-                          minWidth: hideRightCard ? 0 : minRightWidth,
-                          maxWidth: maxRightWidth,
-                          display: hideRightCard ? 'none' : 'unset',
-                        }}
-                    >
-                        {rightCard}
-                    </div>
-                </div>
-            </div>
+    <div className="response-main">
+      <div className="workbench-root">
+        <div className="workbench-card" style={{ userSelect: dragging ? 'none' : 'inherit' }}>
+          <div
+            className="workbench-card-left card-item"
+            style={{
+              width: hideRightCard ? '100%' : defaultLeftWidth,
+              minWidth: minLeftWidth,
+              maxWidth: hideRightCard ? 'max-content' : maxLeftWidth,
+            }}
+            ref={refLeft}
+          >
+            {leftCard}
+          </div>
+          <div className={classNames('mosaic-split', 'row', { 'hide-right-card': hideRightCard })} ref={refBar}>
+            <div className="mosaic-split-line" />
+          </div>
+          <div
+            className="workbench-card-right card-item"
+            ref={refRight}
+            style={{
+              minWidth: hideRightCard ? 0 : minRightWidth,
+              maxWidth: maxRightWidth,
+              display: hideRightCard ? 'none' : 'unset',
+            }}
+          >
+            {rightCard}
+          </div>
         </div>
+      </div>
+    </div>
   )
 }
 

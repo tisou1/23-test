@@ -29,7 +29,7 @@ npm login --registry="https://registry.npmjs.org/"
 - npm publish 发包 `npm publish <package-spec>`
   如果要发布的包前面有scope, 可能会报错. 发布一个带scope的包一定要加上--access=public参数，表示公开免费
   > 402 Payment Required - PUT https://registry.npmjs.org/@tisou1%2fnl - You must sign up for private packages
-  
+
   这时候需要设置一下要发布的是公有源使用`npm publish --access=public`
   如果package.json中name中不包含scope的话, `access`默认就是public
 
@@ -43,9 +43,8 @@ npm login --registry="https://registry.npmjs.org/"
   - types 指定类型声明文件
   - exports (es6) 配置导出模式, 优先级高于`main`
 
-
   优先级,一般来说是模块入口优先级为: `exports` > `module` > `mian`
-  
+
   ```
   // 条件加载 & 子目录导出
   {
@@ -62,7 +61,6 @@ npm login --registry="https://registry.npmjs.org/"
     },
   }
   ```
-
 
 ## 4. 删除包的某个版本
 

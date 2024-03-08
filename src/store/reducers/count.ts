@@ -6,7 +6,7 @@ const initialState = {
   todo: [],
 }
 
-const countReducer = (state = initialState.count, action: ActionType) => {
+function countReducer(state = initialState.count, action: ActionType) {
   switch (action.type) {
     case '+':
       return state + 1
@@ -16,7 +16,7 @@ const countReducer = (state = initialState.count, action: ActionType) => {
       return state
   }
 }
-const todoReducer = (state = initialState.todo, action: ActionType) => {
+function todoReducer(state = initialState.todo, action: ActionType) {
   switch (action.type) {
     case 'todo':
       return [...state, { name: 'siry' }]

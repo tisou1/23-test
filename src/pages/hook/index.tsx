@@ -1,6 +1,8 @@
 import React from 'react'
+
 // import useKeyEvents from './hooks/useKeyEvents'
-import useKeyPress, { useShortcurt } from './hooks/useKeyDown'
+import { useShortcurt } from './hooks/useKeyDown'
+
 // import { useKeyPress } from 'ahooks'
 
 function MyComponent() {

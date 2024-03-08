@@ -37,11 +37,11 @@ function TemplateEngine(html, options) {
 const template
 = 'My avorite sports:'
 + '<%if(this.showSports) {%>'
-    + '<% for(var index in this.sports) {   %>'
-    + '<a href="#"><%this.sports[index]%></a>'
-    + '<%}%>'
++ '<% for(var index in this.sports) {   %>'
++ '<a href="#"><%this.sports[index]%></a>'
++ '<%}%>'
 + '<%} else {%>'
-    + '<p>none</p>'
++ '<p>none</p>'
 + '<%}%>'
 
 console.log(TemplateEngine(template, {

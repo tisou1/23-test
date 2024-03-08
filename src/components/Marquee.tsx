@@ -20,19 +20,19 @@ export default function Marquee(props: MarqueeProps) {
 
   return (
     <div>
-       <div className="marquee-wrapper overflow-hidden flex">
-            {Array(3)
-              .fill(users)
-              .map((users, index) => (
-                    <div key={index} className={`marquee${reverse ? ' marquee-reverse' : ''}`}>
-                        {users.map(user => (
-                            <div className="w-full" key={user.name}>
-                                <img src={user.image} alt={`${user.name}-${colorScheme}`} />
-                            </div>
-                        ))}
-                    </div>
+      <div className="marquee-wrapper overflow-hidden flex">
+        {Array(3)
+          .fill(users)
+          .map((users, index) => (
+            <div key={index} className={`marquee${reverse ? ' marquee-reverse' : ''}`}>
+              {users.map(user => (
+                <div className="w-full" key={user.name}>
+                  <img src={user.image} alt={`${user.name}-${colorScheme}`} />
+                </div>
               ))}
-        </div>
+            </div>
+          ))}
+      </div>
     </div>
   )
 }

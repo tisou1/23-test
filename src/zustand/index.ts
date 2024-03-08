@@ -1,22 +1,22 @@
+import { useSyncExternalStore } from 'react'
 
-import {useEffect, useState,useSyncExternalStore} from 'react'
-const createStore =  (createState) => {
-  let state: unknown;
-  const listeners = new Set<(pre: unknown, next: unknown) => void>();
-
+function createStore(createState) {
+  let state: unknown
+  const listeners = new Set<(pre: unknown, next: unknown) => void>()
 
   const getState = () => state
 
   const setState = (partial: (state: any) => any, replace: boolean) => {
     const nextState = typeof partial === 'function' ? partial(state) : partial
-    if(!Object.is(nextState, state)) {
+    if (!Object.is(nextState, state)) {
       const previousState = state
-      if(!replace) {
-          // 合并state
-          state =  (typeof nextState !== 'object' || nextState === null) 
-            ? nextState
-            : Object.assign({},state, nextState)
-      } else {
+      if (!replace) {
+        // 合并state
+        state = (typeof nextState !== 'object' || nextState === null)
+          ? nextState
+          : Object.assign({}, state, nextState)
+      }
+      else {
         state = nextState
       }
       listeners.forEach(listener => listener(state, previousState))
@@ -24,14 +24,13 @@ const createStore =  (createState) => {
   }
 
   const subscribe = (listener: () => void) => {
-    listeners.add(listener);
-    return () => listeners.delete(listener);
+    listeners.add(listener)
+    return () => listeners.delete(listener)
   }
-
 
   const destory = () => listeners.clear()
 
-  const api = {setState, getState, subscribe, destory}
+  const api = { setState, getState, subscribe, destory }
 
   state = createState(setState, getState, api)
 
@@ -56,19 +55,18 @@ const createStore =  (createState) => {
 
 function useStore(api, selector) {
   function getState() {
-      return selector(api.getState());
+    return selector(api.getState())
   }
-  
+
   return useSyncExternalStore(api.subscribe, getState)
 }
 
-
-export const create = (createState) => {
+export function create(createState) {
   const api = createStore(createState)
 
-  const useBoundStore = (selector) => useStore(api, selector)
+  const useBoundStore = selector => useStore(api, selector)
 
-  Object.assign(useBoundStore, api);
+  Object.assign(useBoundStore, api)
 
   return useBoundStore
 }

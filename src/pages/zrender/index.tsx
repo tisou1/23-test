@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import * as zrender from 'zrender'
+
 // zrender尝试
 export default function Index() {
   const containerDom = useRef(null)
@@ -20,6 +21,6 @@ export default function Index() {
   }, [])
 
   return (
-    <div ref={containerDom} id="main" className='w-full h-200px'></div>
+    <div ref={containerDom} id="main" className="w-full h-200px"></div>
   )
 }

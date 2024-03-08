@@ -15,7 +15,7 @@ const JSonObj = {
 export default function JsonViewApp() {
   return (
     <section className="json-view outline-dotted-blue-gray-400">
-      <JsonView src={JSonObj}/>
+      <JsonView src={JSonObj} />
     </section>
   )
 }

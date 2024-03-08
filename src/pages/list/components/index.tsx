@@ -32,21 +32,21 @@ export function FixedSizeList(props) {
   }
 
   return (
-  <div
-    style={{ height, overflow: 'auto' }}
-    onScroll={(e) => {
+    <div
+      style={{ height, overflow: 'auto' }}
+      onScroll={(e) => {
       // 处理渲染异步导致的空白现象
       // 改为同步更新，但可能会有性能问题，可以做 节流 + RAF 优化
-      flushSync(() => {
-        setScrollTop(e.target.scrollTop)
-      })
-    }}
-        >
-    <div style={{ height: contentHeight }}>
-      {/* 一个将 items 往下推到正确位置的空元素 */}
-      <div style={{ height: top }}></div>
-      {items}
+        flushSync(() => {
+          setScrollTop(e.target.scrollTop)
+        })
+      }}
+    >
+      <div style={{ height: contentHeight }}>
+        {/* 一个将 items 往下推到正确位置的空元素 */}
+        <div style={{ height: top }}></div>
+        {items}
+      </div>
     </div>
-    </div>)
+  )
 }
-
