@@ -11,7 +11,7 @@ const styles = stylex.create({
   },
 })
 
-console.log(styles);
+console.log(styles)
 
 export default function StyleX() {
   return (
